@@ -84,11 +84,11 @@ if __name__ == '__main__':
     # run...
 
     if cmd.set():
-        # check for registration...
+        # check for existing registration...
         device = manager.find_for_name(api_auth.org_id, device_id.box_label())
 
         if device:
-            print("Device already exists for organisation:", file=sys.stderr)
+            print("Device already exists for organisation:", file=sys.stderr)  # TODO: do an update instead of a create
 
             # find ClientAuth...
             client_auth = ClientAuth.load_from_host(Host)

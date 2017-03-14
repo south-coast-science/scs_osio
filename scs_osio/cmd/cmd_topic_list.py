@@ -7,6 +7,8 @@ Created on 14 Feb 2017
 import optparse
 
 
+# TODO: remove - use TopicDelete instead, because PATH should be compulsory
+
 # --------------------------------------------------------------------------------------------------------------------
 
 class CmdTopicList(object):

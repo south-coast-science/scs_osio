@@ -1,5 +1,5 @@
 """
-Created on 17 Nov 2016
+Created on 16 Feb 2017
 
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 """
@@ -16,9 +16,19 @@ class CmdTopic(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog PATH [-v]", version="%prog 1.0")
+        self.__parser = optparse.OptionParser(usage="%prog PATH [-n NAME -d DESCRIPTION [-s SCHEMA_ID]] [-v]",
+                                              version="%prog 1.0")
 
         # optional...
+        self.__parser.add_option("--name", "-n", type="string", nargs=1, action="store", dest="name",
+                                 help="name")
+
+        self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
+                                 help="description")
+
+        self.__parser.add_option("--schema", "-s", type="int", nargs=1, action="store", dest="schema_id",
+                                 help="schema ID")
+
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
 
@@ -28,10 +38,16 @@ class CmdTopic(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def is_valid(self):
-        if self.path is None:
-            return False
+        if bool(self.__opts.name) == bool(self.__opts.description):
+            return True
 
-        return True
+        return False
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+
+    def set(self):
+        return self.__opts.name is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -39,6 +55,21 @@ class CmdTopic(object):
     @property
     def path(self):
         return self.__args[0] if len(self.__args) > 0 else None
+
+
+    @property
+    def name(self):
+        return self.__opts.name
+
+
+    @property
+    def description(self):
+        return self.__opts.description
+
+
+    @property
+    def schema_id(self):
+        return self.__opts.schema_id
 
 
     @property
@@ -58,5 +89,5 @@ class CmdTopic(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdTopic:{path:%s, verbose:%s, args:%s}" % \
-                    (self.path, self.verbose, self.args)
+        return "CmdTopic:{path:%s, name:%s, description:%s, schema_id:%s, verbose:%s, args:%s}" % \
+                    (self.path, self.name, self.description, self.schema_id, self.verbose, self.args)

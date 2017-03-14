@@ -19,7 +19,7 @@ from scs_core.osio.client.api_auth import APIAuth
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
-from scs_osio.cmd.cmd_topic import CmdTopic
+from scs_osio.cmd.cmd_topic_delete import CmdTopicDelete
 
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # cmd...
 
-    cmd = CmdTopic()
+    cmd = CmdTopicDelete()
 
     if not cmd.is_valid():
         cmd.print_help(sys.stderr)
