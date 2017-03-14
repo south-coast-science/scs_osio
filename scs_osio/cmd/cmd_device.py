@@ -9,7 +9,7 @@ import optparse
 
 # --------------------------------------------------------------------------------------------------------------------
 
-class CmdDeviceCreate(object):
+class CmdDevice(object):
     """
     unix command line handler
     """
@@ -18,17 +18,16 @@ class CmdDeviceCreate(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog -u USER_ID -l LAT LNG POSTCODE [-d DESCRIPTION] [-v]",
+        self.__parser = optparse.OptionParser(usage="%prog [-u USER_ID -l LAT LNG POSTCODE [-d DESCRIPTION]] [-v]",
                                               version="%prog 1.0")
 
-        # compulsory...
+        # optional...
         self.__parser.add_option("--user", "-u", type="string", nargs=1, action="store", dest="user_id",
                                  help="user-id")
 
         self.__parser.add_option("--loc", "-l", type="string", nargs=3, action="store", dest="lat_lng_postcode",
                                  help="device location")
 
-        # optional...
         self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
                                  help="device description")
 
@@ -41,10 +40,16 @@ class CmdDeviceCreate(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def is_valid(self):
-        if self.user_id and self.__opts.lat_lng_postcode:
+        if bool(self.__opts.user_id) == bool(self.__opts.lat_lng_postcode):
             return True
 
         return False
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+
+    def set(self):
+        return self.__opts.user_id is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -55,17 +60,17 @@ class CmdDeviceCreate(object):
 
     @property
     def lat(self):
-        return self.__opts.lat_lng_postcode[0] if len(self.__opts.lat_lng_postcode) > 0 else None
+        return self.__opts.lat_lng_postcode[0] if self.__opts.lat_lng_postcode else None
 
 
     @property
     def lng(self):
-        return self.__opts.lat_lng_postcode[1] if len(self.__opts.lat_lng_postcode) > 1 else None
+        return self.__opts.lat_lng_postcode[1] if self.__opts.lat_lng_postcode else None
 
 
     @property
     def postcode(self):
-        return self.__opts.lat_lng_postcode[2] if len(self.__opts.lat_lng_postcode) > 2 else None
+        return self.__opts.lat_lng_postcode[2] if self.__opts.lat_lng_postcode else None
 
 
     @property
@@ -90,5 +95,5 @@ class CmdDeviceCreate(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdDeviceCreate:{user_id:%s, lat:%s, lng:%s, postcode:%s, description:%s, verbose:%s, args:%s}" % \
+        return "CmdDevice:{user_id:%s, lat:%s, lng:%s, postcode:%s, description:%s, verbose:%s, args:%s}" % \
                     (self.user_id, self.lat, self.lng, self.postcode, self.description, self.verbose, self.args)

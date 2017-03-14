@@ -8,19 +8,20 @@ Created on 18 Feb 2017
 workflow:
   1: ./scs_osio/device_id.py
   2: ./scs_osio/api_auth.py
-> 3: ./scs_osio/device_create.py
+> 3: ./scs_osio/device.py
   4: ./scs_osio/publication.py
 
 Requires APIAuth and DeviceID documents.
 Creates ClientAuth document.
 
 command line examples:
-./scs_osio/device_create.py -v -u south-coast-science-test-user -l 50.823130 -0.122922 "BN2 0DA" -d "test 1"
-./scs_osio/device_create.py -v -u south-coast-science-test-user -l 50.819456, -0.128336 "BN2 1AF" -d "BB dev platform"
+./scs_osio/device.py -v -u south-coast-science-test-user -l 50.823130 -0.122922 "BN2 0DA" -d "test 1"
+./scs_osio/device.py -v -u south-coast-science-test-user -l 50.819456, -0.128336 "BN2 1AF" -d "BB dev platform"
 """
 
 import sys
 
+from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 
@@ -31,10 +32,8 @@ from scs_core.sys.device_id import DeviceID
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
-from scs_osio.cmd.cmd_device_create import CmdDeviceCreate
+from scs_osio.cmd.cmd_device import CmdDevice
 
-
-# TODO: balk if there already is a device with the device ID (override with -f)
 
 # --------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +42,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # cmd...
 
-    cmd = CmdDeviceCreate()
+    cmd = CmdDevice()
 
     if not cmd.is_valid():
         cmd.print_help(sys.stderr)
@@ -84,16 +83,35 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
-    # TODO: responses should be JSON...
+    if cmd.set():
+        # check for registration...
+        device = manager.find_for_name(api_auth.org_id, device_id.box_label())
 
-    # create prototype...
-    device = Source.device(device_id, api_auth, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
+        if device:
+            print("Device already exists for organisation.", file=sys.stderr)
 
-    # create device...
-    device = manager.create(cmd.user_id, device)
-    print(device)
+            # find ClientAuth...
+            client_auth = ClientAuth.load_from_host(Host)
 
-    # create client_auth...
-    client_auth = ClientAuth(cmd.user_id, device.client_id, device.password)
-    client_auth.save(Host)
-    print(client_auth)
+        else:
+            # create prototype...
+            device = Source.device(device_id, api_auth, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
+
+            # register Device...
+            device = manager.create(cmd.user_id, device)
+
+            # create ClientAuth...
+            client_auth = ClientAuth(cmd.user_id, device.client_id, device.password)
+            client_auth.save(Host)
+
+    else:
+        # find Device...
+        device = manager.find_for_name(api_auth.org_id, device_id.box_label())
+
+        # find ClientAuth...
+        client_auth = ClientAuth.load_from_host(Host)
+
+    if cmd.verbose:
+        print(client_auth, file=sys.stderr)
+
+    print(JSONify.dumps(device))
