@@ -104,14 +104,14 @@ if __name__ == '__main__':
     auth = APIAuth.load_from_host(Host)
 
     if auth is None:
-        print("APIAuth not available.")
+        print("APIAuth not available.", file=sys.stderr)
         exit()
 
 
     device_id = DeviceID.load_from_host(Host)
 
     if device_id is None:
-        print("DeviceID not available.")
+        print("DeviceID not available.", file=sys.stderr)
         exit()
 
     if cmd.verbose:
