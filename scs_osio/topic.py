@@ -70,7 +70,7 @@ if __name__ == '__main__':
             print("Topic already exists:", file=sys.stderr)     # TODO: do an update instead of a create
 
         else:
-            topic_info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)     # for the v2 API, schema_id goes in Topic
+            topic_info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)   # for the v2 API, schema_id goes in Topic
 
             topic = Topic(cmd.path, cmd.name, cmd.description, True, True, topic_info, cmd.schema_id)
             success = manager.create(topic)
