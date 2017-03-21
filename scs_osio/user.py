@@ -68,13 +68,14 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
+    user = manager.find(client_auth.user_id)
+
+    if user is None:
+        print("User not found.", file=sys.stderr)
+        exit()
+
     # if cmd.set():
     #     auth = APIAuth(cmd.org_id, cmd.api_key)
     #     auth.save(Host)
-    #
-    # else:
-        # find self...
-
-    user = manager.find(client_auth.user_id)
 
     print(JSONify.dumps(user))
