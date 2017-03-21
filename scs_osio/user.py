@@ -42,6 +42,7 @@ if __name__ == '__main__':
 
     http_client = HTTPClient()
 
+
     api_auth = APIAuth.load_from_host(Host)
 
     if api_auth is None:
