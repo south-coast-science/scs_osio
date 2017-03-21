@@ -8,7 +8,7 @@ Created on 8 Mar 2017
 Requires APIAuth document.
 
 command line examples:
-./scs_osio/organisation_create.py -v -o test-org-1 -n "Test Org 1" -w www.southcoastscience.com \
+./scs_osio/organisation.py -v -o test-org-1 -n "Test Org 1" -w www.southcoastscience.com \
 -d "a test organisation" -e test1@southcoastscience.com
 """
 
@@ -22,10 +22,10 @@ from scs_core.osio.manager.organisation_manager import OrganisationManager
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
-from scs_osio.cmd.cmd_organisation_create import CmdOrganisationCreate
+from scs_osio.cmd.cmd_organisation import CmdOrganisation
 
 
-# TODO: balk if there already is an organisation with the org ID (override with -f)
+# TODO: check if the org already exists - if so do update, rather than create
 
 # --------------------------------------------------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # cmd...
 
-    cmd = CmdOrganisationCreate()
+    cmd = CmdOrganisation()
 
     if not cmd.is_valid():
         cmd.print_help(sys.stderr)
@@ -65,10 +65,15 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
-    # create prototype...
-    org = Organisation(cmd.org_id, cmd.name, cmd.website, cmd.description, cmd.email)
+    if cmd.set():
+        # create prototype...
+        org = Organisation(cmd.org_id, cmd.name, cmd.website, cmd.description, cmd.email)
 
-    # create device...
-    manager.create(org)
+        # create organisation...
+        manager.create(org)
+
+    else:
+        # find self...
+        org = manager.find(api_auth.org_id)
 
     print(JSONify.dumps(org))

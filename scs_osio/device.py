@@ -35,6 +35,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_device import CmdDevice
 
 
+# TODO: check if the device already exists - if so do update, rather than create
+
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
@@ -105,7 +107,7 @@ if __name__ == '__main__':
             client_auth.save(Host)
 
     else:
-        # find Device...
+        # find self...
         device = manager.find_for_name(api_auth.org_id, device_id.box_label())
 
         # find ClientAuth...

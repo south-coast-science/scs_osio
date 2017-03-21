@@ -23,7 +23,7 @@ class CmdAPIAuth(object):
 
         # optional...
         self.__parser.add_option("--set", "-s", type="string", nargs=2, action="store", dest="org_key",
-                                 help="org ID and API key")
+                                 help="set org ID and API key")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")

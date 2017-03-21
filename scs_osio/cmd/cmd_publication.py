@@ -23,10 +23,10 @@ class CmdPublication(object):
 
         # optional...
         self.__parser.add_option("--set", "-s", type="string", nargs=2, action="store", dest="group_location",
-                                 help="topic group and location ID")
+                                 help="set topic group and location ID")
 
         self.__parser.add_option("--gases", "-g", type="string", nargs=1, action="store", dest="gases_schema_id",
-                                 help="gases schema ID")
+                                 help="set gases schema ID")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")

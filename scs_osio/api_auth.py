@@ -27,8 +27,6 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_api_auth import CmdAPIAuth
 
 
-# TODO: check whether the ORG_ID exists on OSIO?
-
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
@@ -50,6 +48,7 @@ if __name__ == '__main__':
         auth.save(Host)
 
     else:
+        # find self...
         auth = APIAuth.load_from_host(Host)
 
     print(JSONify.dumps(auth))

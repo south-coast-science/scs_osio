@@ -23,13 +23,13 @@ class CmdDevice(object):
 
         # optional...
         self.__parser.add_option("--user", "-u", type="string", nargs=1, action="store", dest="user_id",
-                                 help="user-id")
+                                 help="set user-id")
 
         self.__parser.add_option("--loc", "-l", type="string", nargs=3, action="store", dest="lat_lng_postcode",
-                                 help="device location")
+                                 help="set device location")
 
         self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
-                                 help="device description")
+                                 help="set device description")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
@@ -40,7 +40,7 @@ class CmdDevice(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def is_valid(self):
-        if bool(self.__opts.user_id) == bool(self.__opts.lat_lng_postcode):
+        if bool(self.user_id) == bool(self.__opts.lat_lng_postcode):
             return True
 
         return False
@@ -49,7 +49,7 @@ class CmdDevice(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def set(self):
-        return self.__opts.user_id is not None
+        return self.user_id is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------

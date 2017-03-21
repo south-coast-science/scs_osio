@@ -20,10 +20,10 @@ class CmdDeviceList(object):
 
         # compulsory...
         self.__parser.add_option("--user", "-u", action="store_true", dest="user", default=False,
-                                 help="list for device auth user ID")
+                                 help="list for user ID of client auth")
 
         self.__parser.add_option("--org", "-o", action="store_true", dest="org", default=False,
-                                 help="list for API auth org ID")
+                                 help="list for  org ID of API auth")
 
         # optional...
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
