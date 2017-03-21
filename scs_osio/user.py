@@ -74,6 +74,8 @@ if __name__ == '__main__':
         print("User not found.", file=sys.stderr)
         exit()
 
+    # TODO: implement update
+
     # if cmd.set():
     #     auth = APIAuth(cmd.org_id, cmd.api_key)
     #     auth.save(Host)
