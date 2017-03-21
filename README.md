@@ -1,5 +1,5 @@
 # scs_osio
-OpenSensors.io - device, organisation, topic, schema and user management tools for South Coast Science  air quality
+OpenSensors.io - device, organisation, topic and schema management tools for South Coast Science  air quality
 monitoring projects.
 
 Required libraries: 
