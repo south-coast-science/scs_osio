@@ -9,7 +9,7 @@ workflow:
   1: ./scs_osio/device_id.py
   2: ./scs_osio/api_auth.py
 > 3: ./scs_osio/device.py
-  4: ./scs_osio/publication.py
+  4: ./scs_osio/project.py
 
 Requires APIAuth and DeviceID documents.
 Creates ClientAuth document.
