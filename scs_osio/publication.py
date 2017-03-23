@@ -34,6 +34,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_publication import CmdPublication
 
 
+# TODO: rename as "project"
+
 # TODO: balk if there already are any topics with the given paths (override with -f)
 
 # --------------------------------------------------------------------------------------------------------------------
