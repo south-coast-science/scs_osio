@@ -24,7 +24,6 @@ import sys
 from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
-
 from scs_core.osio.config.source import Source
 from scs_core.osio.manager.device_manager import DeviceManager
 from scs_core.sys.device_id import DeviceID

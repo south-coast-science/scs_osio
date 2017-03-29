@@ -7,7 +7,7 @@ Created on 18 Feb 2017
 import optparse
 
 
-# TODO: add a field to override topic or location pre-existence?
+# TODO: schema_id must be derived from afe_calib.json using OSIO mapping class
 
 # --------------------------------------------------------------------------------------------------------------------
 

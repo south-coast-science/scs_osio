@@ -34,7 +34,9 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_project import CmdProject
 
 
-# TODO: balk if there already are any topics with the given paths (override with -f)
+# TODO: check if the roject / topics already exist - if so do update, rather than create
+
+# TODO: schema_id must be derived from afe_calib.json using OSIO mapping class
 
 # --------------------------------------------------------------------------------------------------------------------
 
