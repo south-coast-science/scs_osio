@@ -25,7 +25,6 @@ from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.config.source import Source
-from scs_core.osio.data.location import Location
 from scs_core.osio.manager.device_manager import DeviceManager
 from scs_core.sys.device_id import DeviceID
 
@@ -62,8 +61,10 @@ if __name__ == '__main__':
 
     manager = DeviceManager(http_client, api_auth.api_key)
 
+    print("box label: %s" % device_id.box_label())
+
     # check for existing registration...
-    device = manager.find_for_name(api_auth.org_id, device_id.box_label()) # No! find for client ID
+    device = manager.find_for_name(api_auth.org_id, device_id.box_label())
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -86,28 +87,23 @@ if __name__ == '__main__':
 
     if cmd.set():
         if device:
-            print("Device already exists for organisation:", file=sys.stderr)  # TODO: do an update instead of a create
-
             # find ClientAuth...
             client_auth = ClientAuth.load_from_host(Host)
 
-            # update device...
-            if cmd.lat:
-                location = Location(cmd.lat, cmd.lng, None, None, cmd.postcode)
-                device.location = location
+            # update Device...
+            update = Source.update(device, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
+            manager.update(api_auth.org_id, device.client_id, update)
 
-            if cmd.description:
-                device.description = cmd.description
+            # find updated device...
+            device = manager.find(api_auth.org_id, device.client_id)
 
         else:
             if not cmd.is_complete():
                 print("User ID and location are required to create a device.", file=sys.stderr)
                 exit()
 
-            # create prototype...
-            device = Source.device(device_id, api_auth, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
-
-            # register Device...
+            # create Device...
+            device = Source.create(device_id, api_auth, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
             device = manager.create(cmd.user_id, device)
 
             # create ClientAuth...
@@ -115,9 +111,6 @@ if __name__ == '__main__':
             client_auth.save(Host)
 
     else:
-        # find self...
-        device = manager.find_for_name(api_auth.org_id, device_id.box_label())
-
         # find ClientAuth...
         client_auth = ClientAuth.load_from_host(Host)
 
