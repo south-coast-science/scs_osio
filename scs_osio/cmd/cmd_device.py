@@ -18,15 +18,15 @@ class CmdDevice(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog [-u USER_ID -l LAT LNG POSTCODE [-d DESCRIPTION]] [-v]",
+        self.__parser = optparse.OptionParser(usage="%prog [-u USER_ID] [-l LAT LNG POSTCODE] [-d DESCRIPTION]] [-v]",
                                               version="%prog 1.0")
 
         # optional...
         self.__parser.add_option("--user", "-u", type="string", nargs=1, action="store", dest="user_id",
-                                 help="set user-id")
+                                 help="set user-id (only required if device has not yet been registered)")
 
         self.__parser.add_option("--loc", "-l", type="string", nargs=3, action="store", dest="lat_lng_postcode",
-                                 help="set device location")
+                                 help="set device location (required if device has not yet been registered)")
 
         self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
                                  help="set device description")
@@ -39,17 +39,24 @@ class CmdDevice(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
-    def is_valid(self):
-        if bool(self.user_id) == bool(self.__opts.lat_lng_postcode):
-            return True
+    def is_valid(self, device):
+        if device is None:
+            return self.is_complete()
 
-        return False
+        return True
+
+
+    def is_complete(self):
+        if self.user_id is None or self.__opts.lat_lng_postcode is None:
+            return False
+
+        return True
 
 
     # ----------------------------------------------------------------------------------------------------------------
 
     def set(self):
-        return self.user_id is not None
+        return self.user_id is not None or self.__opts.lat_lng_postcode is not None or self.description is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -57,6 +64,7 @@ class CmdDevice(object):
     @property
     def user_id(self):
         return self.__opts.user_id
+
 
     @property
     def lat(self):

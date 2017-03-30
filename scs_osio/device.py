@@ -25,6 +25,7 @@ from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.config.source import Source
+from scs_core.osio.data.location import Location
 from scs_core.osio.manager.device_manager import DeviceManager
 from scs_core.sys.device_id import DeviceID
 
@@ -41,19 +42,6 @@ from scs_osio.cmd.cmd_device import CmdDevice
 if __name__ == '__main__':
 
     # ----------------------------------------------------------------------------------------------------------------
-    # cmd...
-
-    cmd = CmdDevice()
-
-    if not cmd.is_valid():
-        cmd.print_help(sys.stderr)
-        exit()
-
-    if cmd.verbose:
-        print(cmd, file=sys.stderr)
-
-
-    # ----------------------------------------------------------------------------------------------------------------
     # resource...
 
     api_auth = APIAuth.load_from_host(Host)
@@ -62,9 +50,6 @@ if __name__ == '__main__':
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-    if cmd.verbose:
-        print(api_auth, file=sys.stderr)
-
 
     device_id = DeviceID.load_from_host(Host)
 
@@ -72,29 +57,53 @@ if __name__ == '__main__':
         print("DeviceID not available.", file=sys.stderr)
         exit()
 
-    if cmd.verbose:
-        print(device_id, file=sys.stderr)
-
 
     http_client = HTTPClient()
 
     manager = DeviceManager(http_client, api_auth.api_key)
+
+    # check for existing registration...
+    device = manager.find_for_name(api_auth.org_id, device_id.box_label()) # No! find for client ID
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+    # cmd...
+
+    cmd = CmdDevice()
+
+    if not cmd.is_valid(device):
+        cmd.print_help(sys.stderr)
+        exit()
+
+    if cmd.verbose:
+        print(cmd, file=sys.stderr)
+        print(api_auth, file=sys.stderr)
+        print(device_id, file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
     if cmd.set():
-        # check for existing registration...
-        device = manager.find_for_name(api_auth.org_id, device_id.box_label())
-
         if device:
             print("Device already exists for organisation:", file=sys.stderr)  # TODO: do an update instead of a create
 
             # find ClientAuth...
             client_auth = ClientAuth.load_from_host(Host)
 
+            # update device...
+            if cmd.lat:
+                location = Location(cmd.lat, cmd.lng, None, None, cmd.postcode)
+                device.location = location
+
+            if cmd.description:
+                device.description = cmd.description
+
         else:
+            if not cmd.is_complete():
+                print("User ID and location are required to create a device.", file=sys.stderr)
+                exit()
+
             # create prototype...
             device = Source.device(device_id, api_auth, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
 
