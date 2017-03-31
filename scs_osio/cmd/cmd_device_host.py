@@ -9,7 +9,7 @@ import optparse
 
 # --------------------------------------------------------------------------------------------------------------------
 
-class CmdDevice(object):
+class CmdDeviceHost(object):
     """
     unix command line handler
     """
@@ -18,15 +18,18 @@ class CmdDevice(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog CLIENT_ID [-l LAT LNG POSTCODE] [-d DESCRIPTION] [-v]",
+        self.__parser = optparse.OptionParser(usage="%prog [-u USER_ID] [-l LAT LNG POSTCODE] [-d DESCRIPTION] [-v]",
                                               version="%prog 1.0")
 
         # optional...
+        self.__parser.add_option("--user", "-u", type="string", nargs=1, action="store", dest="user_id",
+                                 help="set user-id (only if device has not yet been registered)")
+
         self.__parser.add_option("--loc", "-l", type="string", nargs=3, action="store", dest="lat_lng_postcode",
-                                 help="set device location")
+                                 help="set device location (required if device has not yet been registered)")
 
         self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
-                                 help="set device description")
+                                 help="set optional device description")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
@@ -36,8 +39,15 @@ class CmdDevice(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
-    def is_valid(self):
-        if self.client_id is None:
+    def is_valid(self, device):
+        if device is None:
+            return self.is_complete()
+
+        return True
+
+
+    def is_complete(self):
+        if self.user_id is None or self.__opts.lat_lng_postcode is None:
             return False
 
         return True
@@ -46,14 +56,14 @@ class CmdDevice(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def set(self):
-        return self.__opts.lat_lng_postcode is not None or self.description is not None
+        return self.user_id is not None or self.__opts.lat_lng_postcode is not None or self.description is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------
 
     @property
-    def client_id(self):
-        return self.__args[0] if len(self.__args) > 0 else None
+    def user_id(self):
+        return self.__opts.user_id
 
 
     @property
@@ -93,5 +103,5 @@ class CmdDevice(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdDevice:{client_id:%s, lat:%s, lng:%s, postcode:%s, description:%s, verbose:%s, args:%s}" % \
-                    (self.client_id, self.lat, self.lng, self.postcode, self.description, self.verbose, self.args)
+        return "CmdDeviceHost:{user_id:%s, lat:%s, lng:%s, postcode:%s, description:%s, verbose:%s, args:%s}" % \
+                    (self.user_id, self.lat, self.lng, self.postcode, self.description, self.verbose, self.args)

@@ -8,7 +8,7 @@ Created on 18 Feb 2017
 workflow:
   1: ./scs_osio/device_id.py
   2: ./scs_osio/api_auth.py
-  3: ./scs_osio/device.py
+  3: ./scs_osio/device_host.py
 > 4: ./scs_osio/project.py
 
 Requires APIAuth and DeviceID documents.
@@ -34,7 +34,7 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_project import CmdProject
 
 
-# TODO: check if the roject / topics already exist - if so do update, rather than create
+# TODO: check if the project / topics already exist - if so do update, rather than create
 
 # TODO: schema_id must be derived from afe_calib.json using OSIO mapping class
 

@@ -8,7 +8,7 @@ Created on 18 Feb 2017
 workflow:
   1: ./scs_osio/device_id.py
 > 2: ./scs_osio/api_auth.py
-  3: ./scs_osio/device.py
+  3: ./scs_osio/device_host.py
   4: ./scs_osio/project.py
 
 Creates APIAuth document.
