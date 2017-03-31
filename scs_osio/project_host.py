@@ -9,13 +9,13 @@ workflow:
   1: ./scs_osio/device_id.py
   2: ./scs_osio/api_auth.py
   3: ./scs_osio/device_host.py
-> 4: ./scs_osio/project.py
+> 4: ./scs_osio/project_host.py
 
 Requires APIAuth and DeviceID documents.
 Creates Project document.
 
 command line example:
-./scs_osio/project.py -v -s field-trial 2 -g 28
+./scs_osio/project_host.py -v -s field-trial 2 -g 28
 """
 
 import sys

@@ -9,7 +9,7 @@ workflow:
   1: ./scs_osio/device_id.py
 > 2: ./scs_osio/api_auth.py
   3: ./scs_osio/device_host.py
-  4: ./scs_osio/project.py
+  4: ./scs_osio/project_host.py
 
 Creates APIAuth document.
 
