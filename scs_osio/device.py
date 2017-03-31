@@ -23,7 +23,6 @@ import sys
 
 from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
-from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.config.source import Source
 from scs_core.osio.manager.device_manager import DeviceManager
 
@@ -32,8 +31,6 @@ from scs_host.sys.host import Host
 
 from scs_osio.cmd.cmd_device import CmdDevice
 
-
-# TODO: check if the device already exists - if so do update, rather than create
 
 # --------------------------------------------------------------------------------------------------------------------
 
