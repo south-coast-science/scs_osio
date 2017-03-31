@@ -11,7 +11,7 @@ import optparse
 
 # --------------------------------------------------------------------------------------------------------------------
 
-class CmdProject(object):
+class CmdProjectHost(object):
     """unix command line handler"""
 
     def __init__(self):
@@ -94,5 +94,5 @@ class CmdProject(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdProject:{group:%s, location_id:%s, gases_schema_id:%s, verbose:%s, args:%s}" % \
+        return "CmdProjectHost:{group:%s, location_id:%s, gases_schema_id:%s, verbose:%s, args:%s}" % \
                (self.group, self.location_id, self.gases_schema_id, self.verbose, self.args)

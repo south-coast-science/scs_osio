@@ -31,7 +31,7 @@ from scs_core.sys.device_id import DeviceID
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
-from scs_osio.cmd.cmd_project import CmdProject
+from scs_osio.cmd.cmd_project_host import CmdProjectHost
 
 
 # TODO: check if the project / topics already exist - if so do update, rather than create
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # cmd...
 
-    cmd = CmdProject()
+    cmd = CmdProjectHost()
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
