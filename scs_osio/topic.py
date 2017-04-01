@@ -28,6 +28,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_topic import CmdTopic
 
 
+# TODO: this is returning impoverished information like device did - check the finder methods
+
 # TODO: check if the device already exists - if so do update, rather than create
 
 # --------------------------------------------------------------------------------------------------------------------

@@ -8,14 +8,14 @@ Created on 18 Feb 2017
 workflow:
   1: ./scs_osio/device_id.py
   2: ./scs_osio/api_auth.py
-  3: ./scs_osio/device.py
-> 4: ./scs_osio/project.py
+  3: ./scs_osio/device_host.py
+> 4: ./scs_osio/project_host.py
 
 Requires APIAuth and DeviceID documents.
 Creates Project document.
 
 command line example:
-./scs_osio/project.py -v -s field-trial 2 -g 28
+./scs_osio/project_host.py -v -s field-trial 2 -g 28
 """
 
 import sys
@@ -31,10 +31,12 @@ from scs_core.sys.device_id import DeviceID
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
-from scs_osio.cmd.cmd_project import CmdProject
+from scs_osio.cmd.cmd_project_host import CmdProjectHost
 
 
-# TODO: balk if there already are any topics with the given paths (override with -f)
+# TODO: check if the project / topics already exist - if so do update, rather than create
+
+# TODO: schema_id must be derived from afe_calib.json using OSIO mapping class
 
 # --------------------------------------------------------------------------------------------------------------------
 
@@ -90,7 +92,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # cmd...
 
-    cmd = CmdProject()
+    cmd = CmdProjectHost()
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
