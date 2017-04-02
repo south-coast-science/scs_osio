@@ -14,7 +14,7 @@ from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.client.client_excepion import ClientException
-from scs_core.osio.manager.device_manager import DeviceManager
+from scs_core.osio.manager.topic_manager import TopicManager
 
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
@@ -43,7 +43,7 @@ print(client_auth)
 
 http_client = HTTPClient()
 
-manager = DeviceManager(http_client, api_auth.api_key)
+manager = TopicManager(http_client, api_auth.api_key)
 
 print(manager)
 print("-")
@@ -53,31 +53,16 @@ print("-")
 # run...
 
 print("find:")
-device = manager.find(api_auth.org_id, client_auth.client_id)
+topic = manager.find('/orgs/south-coast-science-dev/development/loc/2/gases')
 
-print(device)
-print("-")
-
-
-print("find for name:")
-device = manager.find_for_name(api_auth.org_id, device.name)
-
-print(device)
-print("-")
-
-
-print("find for user:")
-devices = manager.find_all_for_user(client_auth.user_id)
-
-for device in devices:
-    print(device)
+print(topic)
 print("-")
 
 
 print("find for org:")
-devices = manager.find_all_for_org(api_auth.org_id)
+topics = manager.find_for_org(api_auth.org_id)
 
-for device in devices:
-    print(device)
+for topic in topics:
+    print(topic)
 print("-")
 
