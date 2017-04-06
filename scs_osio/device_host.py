@@ -86,8 +86,8 @@ if __name__ == '__main__':
             client_auth = ClientAuth.load_from_host(Host)
 
             # update Device...
-            update = Source.update(device, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
-            manager.update(api_auth.org_id, device.client_id, update)
+            updated = Source.update(device, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
+            manager.update(api_auth.org_id, device.client_id, updated)
 
             # find updated device...
             device = manager.find(api_auth.org_id, device.client_id)
