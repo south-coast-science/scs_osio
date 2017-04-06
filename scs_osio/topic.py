@@ -85,4 +85,8 @@ if __name__ == '__main__':
     else:
         topic = manager.find(cmd.path)
 
+    print("-")
+    print(topic)
+
+    print("-")
     print(JSONify.dumps(topic))
