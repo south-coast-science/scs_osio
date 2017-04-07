@@ -66,8 +66,8 @@ class TopicCreator(object):
 
         # success = self.__topic_manager.create()
 
-        topic_info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)     # for the v2 API, schema_id goes in Topic
-        topic = Topic(path, name, description, True, True, topic_info, schema_id)
+        info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)     # for the v2 API, schema_id goes in Topic
+        topic = Topic(path, name, description, True, True, info, schema_id)
 
         print(topic)
 
