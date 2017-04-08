@@ -9,9 +9,11 @@ Required libraries:
 * SCS host: scs_host_bbe, scs_host_posix or scs_host_rpi
 
 
+
 Typical PYTHONPATH (Raspberry Pi, in .profile):
 
 export PYTHONPATH=$HOME/SCS/scs_analysis:$HOME/SCS/scs_dev:$HOME/SCS/scs_osio:$HOME/SCS/scs_mfr:$HOME/SCS/scs_dfe_eng:$HOME/SCS/scs_host_rpi:$HOME/SCS/scs_core:$PYTHONPATH
+
 
 
 Typical PYTHONPATH (Beaglebone, in .bashrc):
