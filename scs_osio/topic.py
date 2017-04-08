@@ -28,8 +28,6 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_topic import CmdTopic
 
 
-# TODO: this is returning impoverished information like device did - check the finder methods (TopicMetadata)
-
 # TODO: check if the device already exists - if so do update, rather than create
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -41,7 +39,32 @@ if __name__ == '__main__':
 
     cmd = CmdTopic()
 
-    if not cmd.is_valid():
+
+    # ----------------------------------------------------------------------------------------------------------------
+    # resource...
+
+    http_client = HTTPClient()
+
+    api_auth = APIAuth.load_from_host(Host)
+
+    if api_auth is None:
+        print("APIAuth not available.", file=sys.stderr)
+        exit()
+
+    manager = TopicManager(http_client, api_auth.api_key)
+
+    # check for existing registration...
+    topic = manager.find(cmd.path)
+
+    if topic is None and not cmd.set():
+        cmd.print_help(sys.stderr)
+        exit()
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+    # cmd validation...
+
+    if not cmd.is_valid(topic):
         cmd.print_help(sys.stderr)
         exit()
 
@@ -50,39 +73,30 @@ if __name__ == '__main__':
 
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
-
-    http_client = HTTPClient()
-
-    auth = APIAuth.load_from_host(Host)
-
-    if auth is None:
-        print("APIAuth not available.", file=sys.stderr)
-        exit()
-
-    manager = TopicManager(http_client, auth.api_key)
-
-
-    # ----------------------------------------------------------------------------------------------------------------
     # run...
 
     if cmd.set():
-        # check for existing registration...
-        topic = manager.find(cmd.path)
-
         if topic:
-            print("Topic already exists:", file=sys.stderr)     # TODO: do an update instead of a create
+            name = topic.name if cmd.name is None else cmd.name
+            description = topic.description if cmd.description is None else cmd.description
+
+            updated = Topic(None, name, description, topic.is_public, topic.info, None, None)
+
+            manager.update(topic.path, updated)
+
+            topic = manager.find(topic.path)
 
         else:
-            topic_info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)   # for the v2 API, schema_id goes in Topic
+            if not cmd.is_complete():
+                print("Name and description are required to create a topic.", file=sys.stderr)
+                exit()
 
-            topic = Topic(cmd.path, cmd.name, cmd.description, True, True, topic_info, cmd.schema_id)
+            info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)   # for the v2 API, schema_id goes in Topic
+
+            topic = Topic(cmd.path, cmd.name, cmd.description, True, True, info, cmd.schema_id)
             success = manager.create(topic)
 
             if cmd.verbose:
                 print("created: %s" % success, file=sys.stderr)
-
-    else:
-        topic = manager.find(cmd.path)
 
     print(JSONify.dumps(topic))

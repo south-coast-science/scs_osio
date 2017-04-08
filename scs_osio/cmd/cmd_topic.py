@@ -21,13 +21,13 @@ class CmdTopic(object):
 
         # optional...
         self.__parser.add_option("--name", "-n", type="string", nargs=1, action="store", dest="name",
-                                 help="name")
+                                 help="set name (required if topic has not yet been registered)")
 
         self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
-                                 help="description")
+                                 help="set description (required if topic has not yet been registered)")
 
         self.__parser.add_option("--schema", "-s", type="int", nargs=1, action="store", dest="schema_id",
-                                 help="schema ID")
+                                 help="set schema ID (only if topic has not yet been registered)")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
@@ -37,17 +37,27 @@ class CmdTopic(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
-    def is_valid(self):
-        if bool(self.__opts.name) == bool(self.__opts.description):
-            return True
+    def is_valid(self, topic):
+        if self.path is None:
+            return False
 
-        return False
+        if topic is None:
+            return self.is_complete()
+
+        return True
+
+
+    def is_complete(self):
+        if self.name is None or self.description is None:
+            return False
+
+        return True
 
 
     # ----------------------------------------------------------------------------------------------------------------
 
     def set(self):
-        return self.__opts.name is not None
+        return self.__opts.name is not None or self.__opts.description is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------
