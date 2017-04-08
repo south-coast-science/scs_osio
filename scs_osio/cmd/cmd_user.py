@@ -18,8 +18,12 @@ class CmdUser(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog [-n NAME] [-e EMAIL] [-p PASSWORD] [-v]",
+        self.__parser = optparse.OptionParser(usage="%prog -p PASSWORD [-n NAME] [-e EMAIL] [-v]",
                                               version="%prog 1.0")
+
+        # compulsory...
+        self.__parser.add_option("--password", "-p", type="string", nargs=1, action="store", dest="password",
+                                 help="password (compulsory)")
 
         # optional...
         self.__parser.add_option("--name", "-n", type="string", nargs=1, action="store", dest="name",
@@ -28,8 +32,6 @@ class CmdUser(object):
         self.__parser.add_option("--email", "-e", type="string", nargs=1, action="store", dest="email",
                                  help="set email address")
 
-        self.__parser.add_option("--password", "-p", type="string", nargs=1, action="store", dest="password",
-                                 help="set password")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
@@ -39,11 +41,25 @@ class CmdUser(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
-    def update(self):
+    def is_valid(self):
+        if self.password is None:
+            return False
+
+        return True
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+
+    def set(self):
         return self.name is not None or self.email is not None or self.password is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------
+
+    @property
+    def password(self):
+        return self.__opts.password
+
 
     @property
     def name(self):
@@ -52,11 +68,6 @@ class CmdUser(object):
     @property
     def email(self):
         return self.__opts.email
-
-
-    @property
-    def password(self):
-        return self.__opts.password
 
 
     @property
@@ -76,5 +87,5 @@ class CmdUser(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdUser:{name:%s, email:%s, password:%s, verbose:%s, args:%s}" % \
-                    (self.name, self.email, self.password, self.verbose, self.args)
+        return "CmdUser:{password:%s, name:%s, email:%s, verbose:%s, args:%s}" % \
+                    (self.password, self.name, self.email, self.verbose, self.args)

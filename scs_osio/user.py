@@ -16,6 +16,7 @@ import sys
 from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
+from scs_core.osio.data.user import User
 from scs_core.osio.manager.user_manager import UserManager
 
 from scs_host.client.http_client import HTTPClient
@@ -32,6 +33,10 @@ if __name__ == '__main__':
     # cmd...
 
     cmd = CmdUser()
+
+    if not cmd.is_valid():
+        cmd.print_help(sys.stderr)
+        exit()
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
@@ -76,10 +81,15 @@ if __name__ == '__main__':
         print("User not found.", file=sys.stderr)
         exit()
 
-    # TODO: implement update
+    if cmd.set():
+        name = user.name if cmd.name is None else cmd.name
+        email = user.email if cmd.email is None else cmd.email
+        password = user.password if cmd.password is None else cmd.password
 
-    # if cmd.set():
-    #     auth = APIAuth(cmd.org_id, cmd.api_key)
-    #     auth.save(Host)
+        updated = User(None, name, email, password, None)
+
+        manager.update(user.id, updated)
+
+        user = manager.find(client_auth.user_id)
 
     print(JSONify.dumps(user))
