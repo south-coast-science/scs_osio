@@ -2,7 +2,7 @@
 OpenSensors.io - device, organisation, topic and schema management tools for South Coast Science  air quality
 monitoring projects.
 
-Required libraries: 
+**Required libraries:** 
 
 * Third party: -
 * SCS root: scs_core
@@ -10,7 +10,7 @@ Required libraries:
 
 
 
-Typical PYTHONPATH:
+**Typical PYTHONPATH:**
 
 Raspberry Pi, in /home/pi/.profile:
 
