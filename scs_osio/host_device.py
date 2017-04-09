@@ -38,25 +38,24 @@ from scs_osio.cmd.cmd_host_device import CmdHostDevice
 if __name__ == '__main__':
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
+    # resources...
 
+    # APIAuth...
     api_auth = APIAuth.load_from_host(Host)
 
     if api_auth is None:
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-
+    # DeviceID...
     device_id = DeviceID.load_from_host(Host)
 
     if device_id is None:
         print("DeviceID not available.", file=sys.stderr)
         exit()
 
-
-    http_client = HTTPClient()
-
-    manager = DeviceManager(http_client, api_auth.api_key)
+    # manager...
+    manager = DeviceManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
     device = manager.find_for_name(api_auth.org_id, device_id.box_label())

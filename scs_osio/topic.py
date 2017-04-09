@@ -41,17 +41,17 @@ if __name__ == '__main__':
 
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
+    # resources...
 
-    http_client = HTTPClient()
-
+    # APIAuth...
     api_auth = APIAuth.load_from_host(Host)
 
     if api_auth is None:
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-    manager = TopicManager(http_client, api_auth.api_key)
+    # manager...
+    manager = TopicManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
     topic = manager.find(cmd.path)

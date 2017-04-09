@@ -40,17 +40,17 @@ if __name__ == '__main__':
 
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
+    # resources...
 
-    http_client = HTTPClient()
-
+    # APIAuth...
     auth = APIAuth.load_from_host(Host)
 
     if auth is None:
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-    manager = TopicManager(http_client, auth.api_key)
+    # manager...
+    manager = TopicManager(HTTPClient(), auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------

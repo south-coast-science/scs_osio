@@ -32,18 +32,17 @@ from scs_osio.cmd.cmd_host_organisation import CmdHostOrganisation
 if __name__ == '__main__':
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
+    # resources...
 
+    # APIAuth...
     api_auth = APIAuth.load_from_host(Host)
 
     if api_auth is None:
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-
-    http_client = HTTPClient()
-
-    manager = OrganisationManager(http_client, api_auth.api_key)
+    # manager...
+    manager = OrganisationManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
     org = manager.find(api_auth.org_id)

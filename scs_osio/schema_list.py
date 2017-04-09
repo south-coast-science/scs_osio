@@ -37,10 +37,9 @@ if __name__ == '__main__':
 
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
+    # resources...
 
-    http_client = HTTPClient()
-
+    # APIAuth...
     auth = APIAuth.load_from_host(Host)
 
     if auth is None:
@@ -50,11 +49,12 @@ if __name__ == '__main__':
     if cmd.verbose:
         print(auth, file=sys.stderr)
 
+    # manager...
+    manager = SchemaManager(HTTPClient(), auth.api_key)
+
 
     # ----------------------------------------------------------------------------------------------------------------
     # run...
-
-    manager = SchemaManager(http_client, auth.api_key)
 
     schemas = manager.find_all()
 

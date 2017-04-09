@@ -19,8 +19,9 @@ from scs_host.sys.host import Host
 
 
 # --------------------------------------------------------------------------------------------------------------------
-# resource...
+# resources...
 
+# APIAuth...
 api_auth = APIAuth.load_from_host(Host)
 
 if api_auth is None:
@@ -29,7 +30,7 @@ if api_auth is None:
 
 print(api_auth)
 
-
+# ClientAuth...
 client_auth = ClientAuth.load_from_host(Host)
 
 if client_auth is None:
@@ -38,10 +39,8 @@ if client_auth is None:
 
 print(client_auth)
 
-
-http_client = HTTPClient()
-
-manager = TopicManager(http_client, api_auth.api_key)
+# manager...
+manager = TopicManager(HTTPClient(), api_auth.api_key)
 
 print(manager)
 print("-")

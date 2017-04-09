@@ -43,11 +43,9 @@ if __name__ == '__main__':
 
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
+    # resources...
 
-    http_client = HTTPClient()
-
-
+    # APIAuth...
     api_auth = APIAuth.load_from_host(Host)
 
     if api_auth is None:
@@ -57,7 +55,7 @@ if __name__ == '__main__':
     if cmd.verbose:
         print(api_auth, file=sys.stderr)
 
-
+    # ClientAuth...
     client_auth = ClientAuth.load_from_host(Host)
 
     if client_auth is None:
@@ -67,8 +65,8 @@ if __name__ == '__main__':
     if cmd.verbose:
         print(client_auth, file=sys.stderr)
 
-
-    manager = UserManager(http_client, api_auth.api_key)
+    # manager...
+    manager = UserManager(HTTPClient(), api_auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------

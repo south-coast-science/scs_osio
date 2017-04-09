@@ -99,17 +99,16 @@ if __name__ == '__main__':
 
 
     # ----------------------------------------------------------------------------------------------------------------
-    # resource...
+    # resources...
 
-    http_client = HTTPClient()
-
+    # APIAuth...
     auth = APIAuth.load_from_host(Host)
 
     if auth is None:
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-
+    # DeviceID...
     device_id = DeviceID.load_from_host(Host)
 
     if device_id is None:
@@ -119,8 +118,8 @@ if __name__ == '__main__':
     if cmd.verbose:
         print(device_id, file=sys.stderr)
 
-
-    manager = TopicManager(http_client, auth.api_key)
+    # manager...
+    manager = TopicManager(HTTPClient(), auth.api_key)
 
     creator = TopicCreator(manager)
 
