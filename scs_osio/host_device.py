@@ -8,14 +8,14 @@ Created on 18 Feb 2017
 workflow:
   1: ./scs_osio/device_id.py
   2: ./scs_osio/api_auth.py
-> 3: ./scs_osio/device_host.py
-  4: ./scs_osio/project_host.py
+> 3: ./scs_osio/host_device.py
+  4: ./scs_osio/host_project.py
 
 Requires APIAuth and DeviceID documents.
 Creates ClientAuth document.
 
 command line example:
-./scs_osio/device_host.py -v -u south-coast-science-test-user -l 50.819456, -0.128336 "BN2 1AF" -d "BB dev platform"
+./scs_osio/host_device.py -v -u south-coast-science-test-user -l 50.819456, -0.128336 "BN2 1AF" -d "BB dev platform"
 """
 
 import sys
@@ -30,7 +30,7 @@ from scs_core.sys.device_id import DeviceID
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
-from scs_osio.cmd.cmd_device_host import CmdDeviceHost
+from scs_osio.cmd.cmd_host_device import CmdHostDevice
 
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # cmd...
 
-    cmd = CmdDeviceHost()
+    cmd = CmdHostDevice()
 
     if not cmd.is_valid(device):
         cmd.print_help(sys.stderr)
@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
         else:
             if not cmd.is_complete():
-                print("User ID and location are required to create a device.", file=sys.stderr)
+                cmd.print_help(sys.stderr)
                 exit()
 
             # create Device...

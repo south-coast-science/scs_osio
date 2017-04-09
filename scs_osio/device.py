@@ -8,8 +8,8 @@ Created on 18 Feb 2017
 workflow:
   1: ./scs_osio/device_id.py
   2: ./scs_osio/api_auth.py
-> 3: ./scs_osio/device_host.py
-  4: ./scs_osio/project_host.py
+> 3: ./scs_osio/host_device.py
+  4: ./scs_osio/host_project.py
 
 Requires APIAuth and DeviceID documents.
 Creates ClientAuth document.

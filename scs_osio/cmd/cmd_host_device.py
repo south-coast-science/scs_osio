@@ -9,7 +9,7 @@ import optparse
 
 # --------------------------------------------------------------------------------------------------------------------
 
-class CmdDeviceHost(object):
+class CmdHostDevice(object):
     """
     unix command line handler
     """
@@ -103,5 +103,5 @@ class CmdDeviceHost(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdDeviceHost:{user_id:%s, lat:%s, lng:%s, postcode:%s, description:%s, verbose:%s, args:%s}" % \
+        return "CmdHostDevice:{user_id:%s, lat:%s, lng:%s, postcode:%s, description:%s, verbose:%s, args:%s}" % \
                     (self.user_id, self.lat, self.lng, self.postcode, self.description, self.verbose, self.args)

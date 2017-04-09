@@ -80,23 +80,21 @@ if __name__ == '__main__':
             name = topic.name if cmd.name is None else cmd.name
             description = topic.description if cmd.description is None else cmd.description
 
+            # update Topic...
             updated = Topic(None, name, description, topic.is_public, topic.info, None, None)
-
             manager.update(topic.path, updated)
 
             topic = manager.find(topic.path)
 
         else:
             if not cmd.is_complete():
-                print("Name and description are required to create a topic.", file=sys.stderr)
+                cmd.print_help(sys.stderr)
                 exit()
 
             info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)   # for the v2 API, schema_id goes in Topic
 
+            # create Topic...
             topic = Topic(cmd.path, cmd.name, cmd.description, True, True, info, cmd.schema_id)
-            success = manager.create(topic)
-
-            if cmd.verbose:
-                print("created: %s" % success, file=sys.stderr)
+            manager.create(topic)
 
     print(JSONify.dumps(topic))

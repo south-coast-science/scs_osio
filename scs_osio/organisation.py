@@ -7,6 +7,8 @@ Created on 8 Mar 2017
 
 Requires APIAuth document.
 
+Note: this script does not create organisations. Arguably, it should.
+
 command line examples:
 ./scs_osio/organisation.py -v -o test-org-1 -n "Test Org 1" -w www.southcoastscience.com \
 -d "a test organisation" -e test1@southcoastscience.com
@@ -24,8 +26,6 @@ from scs_host.sys.host import Host
 
 from scs_osio.cmd.cmd_organisation import CmdOrganisation
 
-
-# TODO: check if the org already exists - if so do update, rather than create
 
 # --------------------------------------------------------------------------------------------------------------------
 
@@ -65,15 +65,23 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
+    # find self...
+    org = manager.find(api_auth.org_id)
+
     if cmd.set():
-        # create prototype...
-        org = Organisation(cmd.org_id, cmd.name, cmd.website, cmd.description, cmd.email)
+        if org is None:
+            print("Organisation not found.", file=sys.stderr)
+            exit()
 
-        # create organisation...
-        manager.create(org)
+        name = org.name if cmd.name is None else cmd.name
+        website = org.website if cmd.website is None else cmd.website
+        description = org.description if cmd.description is None else cmd.description
+        email = org.email if cmd.email is None else cmd.email
 
-    else:
-        # find self...
-        org = manager.find(api_auth.org_id)
+        # update Organisation...
+        updated = Organisation(None, name, website, description, email)
+        manager.update(org.id, updated)
+
+        org = manager.find(org.id)
 
     print(JSONify.dumps(org))
