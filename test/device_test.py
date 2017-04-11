@@ -10,10 +10,8 @@ example:
 
 import sys
 
-from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
-from scs_core.osio.client.client_excepion import ClientException
 from scs_core.osio.manager.device_manager import DeviceManager
 
 from scs_host.client.http_client import HTTPClient
@@ -21,8 +19,9 @@ from scs_host.sys.host import Host
 
 
 # --------------------------------------------------------------------------------------------------------------------
-# resource...
+# resources...
 
+# APIAuth...
 api_auth = APIAuth.load_from_host(Host)
 
 if api_auth is None:
@@ -31,7 +30,7 @@ if api_auth is None:
 
 print(api_auth)
 
-
+# ClientAuth...
 client_auth = ClientAuth.load_from_host(Host)
 
 if client_auth is None:
@@ -40,7 +39,7 @@ if client_auth is None:
 
 print(client_auth)
 
-
+# manager...
 http_client = HTTPClient()
 
 manager = DeviceManager(http_client, api_auth.api_key)
