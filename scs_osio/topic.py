@@ -28,8 +28,6 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_topic import CmdTopic
 
 
-# TODO: check if the device already exists - if so do update, rather than create
-
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
