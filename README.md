@@ -4,7 +4,7 @@ monitoring projects.
 
 **Required libraries:** 
 
-* Third party: -
+* Third party: paho-mqtt
 * SCS root: scs_core
 * SCS host: scs_host_bbe, scs_host_posix or scs_host_rpi
 
