@@ -5,14 +5,9 @@ Created on 18 Feb 2017
 
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
-workflow:
-  1: ./scs_osio/device_id.py
-  2: ./scs_osio/api_auth.py
-> 3: ./scs_osio/host_device.py
-  4: ./scs_osio/host_project.py
+Requires APIAuth and SystemID documents.
 
-Requires APIAuth and DeviceID documents.
-Creates ClientAuth document.
+Note: this script currently does not update device tags.
 
 command line examples:
 ./scs_osio/device.py -v -u south-coast-science-test-user -l 50.823130 -0.122922 "BN2 0DA" -d "test 1"
@@ -23,7 +18,7 @@ import sys
 
 from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
-from scs_core.osio.config.source import Source
+from scs_core.osio.config.project_source import ProjectSource
 from scs_core.osio.manager.device_manager import DeviceManager
 
 from scs_host.client.http_client import HTTPClient
@@ -78,7 +73,7 @@ if __name__ == '__main__':
 
     if cmd.set():
         # update Device...
-        updated = Source.update(device, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
+        updated = ProjectSource.update(device, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
         manager.update(api_auth.org_id, device.client_id, updated)
 
         # find updated device...
