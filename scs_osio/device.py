@@ -5,7 +5,7 @@ Created on 18 Feb 2017
 
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
-Requires APIAuth and DeviceID documents.
+Requires APIAuth and SystemID documents.
 
 command line examples:
 ./scs_osio/device.py -v -u south-coast-science-test-user -l 50.823130 -0.122922 "BN2 0DA" -d "test 1"

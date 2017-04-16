@@ -6,12 +6,12 @@ Created on 18 Feb 2017
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
 workflow:
-  1: ./scs_osio/device_id.py
+  1: ./scs_osio/system_id.py
   2: ./scs_osio/api_auth.py
   3: ./scs_osio/host_device.py
 > 4: ./scs_osio/host_project.py
 
-Requires APIAuth and DeviceID documents.
+Requires APIAuth and SystemID documents.
 Creates Project document.
 
 command line example:
@@ -26,7 +26,7 @@ from scs_core.osio.config.project import Project
 from scs_core.osio.data.topic import Topic
 from scs_core.osio.data.topic_info import TopicInfo
 from scs_core.osio.manager.topic_manager import TopicManager
-from scs_core.sys.device_id import DeviceID
+from scs_core.sys.system_id import SystemID
 
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
@@ -108,15 +108,15 @@ if __name__ == '__main__':
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-    # DeviceID...
-    device_id = DeviceID.load_from_host(Host)
+    # SystemID...
+    system_id = SystemID.load_from_host(Host)
 
-    if device_id is None:
-        print("DeviceID not available.", file=sys.stderr)
+    if system_id is None:
+        print("SystemID not available.", file=sys.stderr)
         exit()
 
     if cmd.verbose:
-        print(device_id, file=sys.stderr)
+        print(system_id, file=sys.stderr)
 
     # manager...
     manager = TopicManager(HTTPClient(), auth.api_key)
@@ -141,10 +141,10 @@ if __name__ == '__main__':
         creator.construct_topic(project.particulates_topic_path(), Project.PARTICULATES_NAME,
                                 Project.PARTICULATES_DESCRIPTION, Project.PARTICULATES_SCHEMA)
 
-        creator.construct_topic(project.status_topic_path(device_id), Project.STATUS_NAME,
+        creator.construct_topic(project.status_topic_path(system_id), Project.STATUS_NAME,
                                 Project.STATUS_DESCRIPTION, Project.STATUS_SCHEMA)
 
-        creator.construct_topic(project.control_topic_path(device_id), Project.CONTROL_NAME,
+        creator.construct_topic(project.control_topic_path(system_id), Project.CONTROL_NAME,
                                 Project.CONTROL_DESCRIPTION, Project.CONTROL_SCHEMA)
 
         project.save(Host)      # TODO: only save if successful
@@ -160,5 +160,5 @@ if __name__ == '__main__':
         print("gases_topic:        %s" % project.gases_topic_path(), file=sys.stderr)
         print("particulates_topic: %s" % project.particulates_topic_path(), file=sys.stderr)
 
-        print("status_topic:       %s" % project.status_topic_path(device_id), file=sys.stderr)
-        print("control_topic:      %s" % project.control_topic_path(device_id), file=sys.stderr)
+        print("status_topic:       %s" % project.status_topic_path(system_id), file=sys.stderr)
+        print("control_topic:      %s" % project.control_topic_path(system_id), file=sys.stderr)

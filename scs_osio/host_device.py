@@ -6,12 +6,12 @@ Created on 18 Feb 2017
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
 workflow:
-  1: ./scs_osio/device_id.py
+  1: ./scs_osio/system_id.py
   2: ./scs_osio/api_auth.py
 > 3: ./scs_osio/host_device.py
   4: ./scs_osio/host_project.py
 
-Requires APIAuth and DeviceID documents.
+Requires APIAuth and SystemID documents.
 Creates ClientAuth document.
 
 command line example:
@@ -25,7 +25,7 @@ from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.config.source import Source
 from scs_core.osio.manager.device_manager import DeviceManager
-from scs_core.sys.device_id import DeviceID
+from scs_core.sys.system_id import SystemID
 
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
@@ -47,18 +47,18 @@ if __name__ == '__main__':
         print("APIAuth not available.", file=sys.stderr)
         exit()
 
-    # DeviceID...
-    device_id = DeviceID.load_from_host(Host)
+    # SystemID...
+    system_id = SystemID.load_from_host(Host)
 
-    if device_id is None:
-        print("DeviceID not available.", file=sys.stderr)
+    if system_id is None:
+        print("SystemID not available.", file=sys.stderr)
         exit()
 
     # manager...
     manager = DeviceManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
-    device = manager.find_for_name(api_auth.org_id, device_id.box_label())
+    device = manager.find_for_name(api_auth.org_id, system_id.box_label())
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     if cmd.verbose:
         print(cmd, file=sys.stderr)
         print(api_auth, file=sys.stderr)
-        print(device_id, file=sys.stderr)
+        print(system_id, file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ if __name__ == '__main__':
                 exit()
 
             # create Device...
-            device = Source.create(device_id, api_auth, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
+            device = Source.create(system_id, api_auth, cmd.lat, cmd.lng, cmd.postcode, cmd.description)
             device = manager.create(cmd.user_id, device)
 
             # create ClientAuth...

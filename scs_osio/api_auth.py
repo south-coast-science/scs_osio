@@ -6,7 +6,7 @@ Created on 18 Feb 2017
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
 workflow:
-  1: ./scs_osio/device_id.py
+  1: ./scs_osio/system_id.py
 > 2: ./scs_osio/api_auth.py
   3: ./scs_osio/host_device.py
   4: ./scs_osio/host_project.py
