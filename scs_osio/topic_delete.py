@@ -8,7 +8,7 @@ Created on 16 Feb 2017
 Requires APIAuth document.
 
 command line example:
-./scs_osio/topic_delete.py -v /orgs/south-coast-science-dev/test/b/status
+./topic_delete.py -v /orgs/south-coast-science-dev/test/b/status
 """
 
 import sys

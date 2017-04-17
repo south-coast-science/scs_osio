@@ -8,7 +8,7 @@ Created on 18 Feb 2017
 Requires APIAuth and ClientAuth documents.
 
 command line example:
-./scs_osio/device_list.py -u -v
+./device_list.py -u -v
 """
 
 import sys

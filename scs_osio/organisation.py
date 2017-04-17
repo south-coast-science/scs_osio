@@ -10,7 +10,7 @@ Requires APIAuth document.
 Note: this script does not create organisations. Arguably, it should.
 
 command line examples:
-./scs_osio/organisation.py -v -o test-org-1 -n "Test Org 1" -w www.southcoastscience.com \
+./organisation.py -v -o test-org-1 -n "Test Org 1" -w www.southcoastscience.com \
 -d "a test organisation" -e test1@southcoastscience.com
 """
 

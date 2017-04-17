@@ -6,15 +6,15 @@ Created on 18 Feb 2017
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
 workflow:
-  1: ./scs_osio/system_id.py
-> 2: ./scs_osio/api_auth.py
-  3: ./scs_osio/host_device.py
-  4: ./scs_osio/host_project.py
+  1: ./system_id.py
+> 2: ./api_auth.py
+  3: ./host_device.py
+  4: ./host_project.py
 
 Creates APIAuth document.
 
 command line example:
-./scs_osio/api_auth.py -v -s south-coast-science-test 9fdfb841-3433-45b8-b223-3f5a283ceb8e
+./api_auth.py -v -s south-coast-science-test 9fdfb841-3433-45b8-b223-3f5a283ceb8e
 """
 
 import sys

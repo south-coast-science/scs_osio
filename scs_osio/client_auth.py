@@ -9,7 +9,7 @@ workflow:
 Use osio_publication instead.
 
 command line example:
-./scs_osio/client_auth.py -v -s southcoastscience-dev 5406 jtxSrK2e
+./client_auth.py -v -s southcoastscience-dev 5406 jtxSrK2e
 """
 
 import sys
