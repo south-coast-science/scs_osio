@@ -11,7 +11,7 @@ workflow:
 Use osio_publication instead.
 
 command line example:
-./scs_osio/topic.py /orgs/south-coast-science-dev/test/1/status -n "test" -d "test of status" -s 28 -v
+./topic.py /orgs/south-coast-science-dev/test/1/status -n "test" -d "test of status" -s 28 -v
 """
 
 import sys

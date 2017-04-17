@@ -8,7 +8,7 @@ Created on 14 Feb 2017
 Requires APIAuth document.
 
 command line example:
-./scs_osio/topic_list.py -p /orgs/south-coast-science-dev/uk -v
+./topic_list.py -p /orgs/south-coast-science-dev/uk -v
 """
 
 import sys

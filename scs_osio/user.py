@@ -8,7 +8,7 @@ Created on 21 Mar 2017
 Requires APIAuth and ClientAuth documents.
 
 command line example:
-./scs_osio/user.py -v -n "Mickey Mouse"
+./user.py -v -n "Mickey Mouse"
 """
 
 import sys
