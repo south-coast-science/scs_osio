@@ -23,6 +23,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_topic_list import CmdTopicList
 
 
+# TODO: why does this not work?
+
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
