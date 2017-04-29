@@ -23,8 +23,6 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_topic_list import CmdTopicList
 
 
-# TODO: why does this not work?
-
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
@@ -59,7 +57,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
-    topics = manager.find_for_org(api_auth.org_id, cmd.partial_path)
+    topics = manager.find_for_org(api_auth.org_id, cmd.partial_path, cmd.schema_id)
 
     for topic in topics:
         print(JSONify.dumps(topic))

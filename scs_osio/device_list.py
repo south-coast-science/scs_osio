@@ -24,6 +24,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_device_list import CmdDeviceList
 
 
+# TODO: add ability to specify the used ID
+
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':

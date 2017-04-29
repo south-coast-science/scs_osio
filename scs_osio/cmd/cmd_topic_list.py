@@ -7,8 +7,6 @@ Created on 14 Feb 2017
 import optparse
 
 
-# TODO: remove - use TopicDelete instead, because PATH should be compulsory
-
 # --------------------------------------------------------------------------------------------------------------------
 
 class CmdTopicList(object):
@@ -18,9 +16,12 @@ class CmdTopicList(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog [PARTIAL_PATH] [-v]", version="%prog 1.0")
+        self.__parser = optparse.OptionParser(usage="%prog [PARTIAL_PATH] [-s SCHEMA_ID] [-v]", version="%prog 1.0")
 
         # optional...
+        self.__parser.add_option("--schema", "-s", type="int", nargs=1, action="store", dest="schema_id",
+                                 help="restrict to topics matching SCHEMA_ID")
+
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
 
@@ -31,7 +32,12 @@ class CmdTopicList(object):
 
     @property
     def partial_path(self):
-        return self.__args[0] if len(self.__args) > 0 else "/"
+        return self.__args[0] if len(self.__args) > 0 else None
+
+
+    @property
+    def schema_id(self):
+        return self.__opts.schema_id
 
 
     @property
@@ -47,4 +53,5 @@ class CmdTopicList(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def __str__(self, *args, **kwargs):
-        return "CmdTopicList:{partial_path:%s, verbose:%s, args:%s}" % (self.partial_path, self.verbose, self.args)
+        return "CmdTopicList:{partial_path:%s, schema_id:%s, verbose:%s, args:%s}" % \
+               (self.partial_path, self.schema_id, self.verbose, self.args)
