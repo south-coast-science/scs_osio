@@ -48,6 +48,7 @@ if __name__ == '__main__':
 
     if cmd.verbose:
         print(api_auth, file=sys.stderr)
+        sys.stderr.flush()
 
     # manager...
     manager = TopicManager(HTTPClient(), api_auth.api_key)
@@ -56,7 +57,10 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
-    topics = manager.find_for_org(api_auth.org_id, cmd.path)
+    topics = manager.find_for_org(api_auth.org_id, cmd.partial_path, cmd.schema_id)
 
     for topic in topics:
         print(JSONify.dumps(topic))
+
+    if cmd.verbose:
+        print("total: %d" % len(topics), file=sys.stderr)

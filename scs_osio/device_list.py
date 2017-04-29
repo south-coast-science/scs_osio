@@ -24,6 +24,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_device_list import CmdDeviceList
 
 
+# TODO: add ability to specify the used ID
+
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
@@ -63,6 +65,7 @@ if __name__ == '__main__':
 
     if cmd.verbose:
         print(client_auth, file=sys.stderr)
+        sys.stderr.flush()
 
     # manager...
     manager = DeviceManager(HTTPClient(), api_auth.api_key)
@@ -78,3 +81,6 @@ if __name__ == '__main__':
 
     for device in devices:
         print(JSONify.dumps(device))
+
+    if cmd.verbose:
+        print("total: %d" % len(devices), file=sys.stderr)

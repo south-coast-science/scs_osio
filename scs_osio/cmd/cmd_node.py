@@ -1,5 +1,5 @@
 """
-Created on 14 Feb 2017
+Created on 25 Apr 2017
 
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 """
@@ -9,18 +9,18 @@ import optparse
 
 # --------------------------------------------------------------------------------------------------------------------
 
-class CmdTopicList(object):
+class CmdNode(object):
     """unix command line handler"""
 
     def __init__(self):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog [PARTIAL_PATH] [-s SCHEMA_ID] [-v]", version="%prog 1.0")
+        self.__parser = optparse.OptionParser(usage="%prog PATH [-i] [-v]", version="%prog 1.0")
 
         # optional...
-        self.__parser.add_option("--schema", "-s", type="int", nargs=1, action="store", dest="schema_id",
-                                 help="restrict to topics matching SCHEMA_ID")
+        self.__parser.add_option("--ignore", "-i", action="store_true", dest="ignore", default=False,
+                                 help="ignore data where node is missing")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
@@ -30,14 +30,23 @@ class CmdTopicList(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
+    def is_valid(self):
+        if self.path is None:
+            return False
+
+        return True
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+
     @property
-    def partial_path(self):
+    def path(self):
         return self.__args[0] if len(self.__args) > 0 else None
 
 
     @property
-    def schema_id(self):
-        return self.__opts.schema_id
+    def ignore(self):
+        return self.__opts.ignore
 
 
     @property
@@ -52,6 +61,9 @@ class CmdTopicList(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
+    def print_help(self, file):
+        self.__parser.print_help(file)
+
+
     def __str__(self, *args, **kwargs):
-        return "CmdTopicList:{partial_path:%s, schema_id:%s, verbose:%s, args:%s}" % \
-               (self.partial_path, self.schema_id, self.verbose, self.args)
+        return "CmdNode:{ignore:%s, verbose:%s, args:%s}" %  (self.ignore, self.verbose, self.args)
