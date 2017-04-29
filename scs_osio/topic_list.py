@@ -50,6 +50,7 @@ if __name__ == '__main__':
 
     if cmd.verbose:
         print(api_auth, file=sys.stderr)
+        sys.stderr.flush()
 
     # manager...
     manager = TopicManager(HTTPClient(), api_auth.api_key)

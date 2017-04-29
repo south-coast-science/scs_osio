@@ -48,6 +48,7 @@ if __name__ == '__main__':
 
     if cmd.verbose:
         print(auth, file=sys.stderr)
+        sys.stderr.flush()
 
     # manager...
     manager = SchemaManager(HTTPClient(), auth.api_key)
