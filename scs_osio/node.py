@@ -6,7 +6,7 @@ Created on 11 Apr 2017
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
 command line example:
-./socket_receiver.py | ./node.py -s val.afe.sns.CO
+./topic_list.py -v -s28 | ./node.py topic -v
 """
 
 import sys
