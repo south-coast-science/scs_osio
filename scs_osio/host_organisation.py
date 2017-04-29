@@ -10,7 +10,7 @@ Requires APIAuth document.
 Note: this script does not create organisations. Arguably, it should.
 
 command line examples:
-./organisation.py -v -o test-org-1 -n "Test Org 1" -w www.southcoastscience.com \
+./host_organisation.py -v -o test-org-1 -n "Test Org 1" -w www.southcoastscience.com \
 -d "a test organisation" -e test1@southcoastscience.com
 """
 
@@ -24,7 +24,7 @@ from scs_core.osio.manager.organisation_manager import OrganisationManager
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
-from scs_osio.cmd.cmd_organisation import CmdOrganisation
+from scs_osio.cmd.cmd_host_organisation import CmdHostOrganisation
 
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -34,11 +34,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # cmd...
 
-    cmd = CmdOrganisation()
-
-    if not cmd.is_valid():
-        cmd.print_help(sys.stderr)
-        exit()
+    cmd = CmdHostOrganisation()
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
