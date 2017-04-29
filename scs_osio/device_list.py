@@ -81,3 +81,6 @@ if __name__ == '__main__':
 
     for device in devices:
         print(JSONify.dumps(device))
+
+    if cmd.verbose:
+        print("total: %d" % len(devices), file=sys.stderr)

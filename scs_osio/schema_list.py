@@ -61,3 +61,6 @@ if __name__ == '__main__':
 
     for schema in schemas:
         print(JSONify.dumps(schema))
+
+    if cmd.verbose:
+        print("total: %d" % len(schemas), file=sys.stderr)

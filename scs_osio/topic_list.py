@@ -61,3 +61,6 @@ if __name__ == '__main__':
 
     for topic in topics:
         print(JSONify.dumps(topic))
+
+    if cmd.verbose:
+        print("total: %d" % len(topics), file=sys.stderr)
