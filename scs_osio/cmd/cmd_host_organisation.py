@@ -18,7 +18,7 @@ class CmdHostOrganisation(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog ORG_ID [-n NAME] [-w WEB] [-d DESCRIPTION] [-e EMAIL] [-v]",
+        self.__parser = optparse.OptionParser(usage="%prog [-n NAME] [-w WEB] [-d DESCRIPTION] [-e EMAIL] [-v]",
                                               version="%prog 1.0")
 
         # optional...
@@ -48,11 +48,6 @@ class CmdHostOrganisation(object):
 
 
     # ----------------------------------------------------------------------------------------------------------------
-
-    @property
-    def org_id(self):
-        return self.__args[0] if len(self.__args) > 0 else None
-
 
     @property
     def name(self):
@@ -91,7 +86,5 @@ class CmdHostOrganisation(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdHostOrganisation:{org_id:%s, name:%s, website:%s, description:%s, email:%s, " \
-               "verbose:%s, args:%s}" % \
-                    (self.org_id, self.name, self.website, self.description, self.email,
-                     self.verbose, self.args)
+        return "CmdHostOrganisation:{name:%s, website:%s, description:%s, email:%s, verbose:%s, args:%s}" % \
+                    (self.name, self.website, self.description, self.email, self.verbose, self.args)
