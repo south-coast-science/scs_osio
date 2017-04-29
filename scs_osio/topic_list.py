@@ -59,7 +59,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
-    topics = manager.find_for_org(api_auth.org_id, cmd.path)
+    topics = manager.find_for_org(api_auth.org_id, cmd.partial_path)
 
     for topic in topics:
         print(JSONify.dumps(topic))

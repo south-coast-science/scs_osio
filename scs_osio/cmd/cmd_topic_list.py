@@ -18,7 +18,7 @@ class CmdTopicList(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog [PATH] [-v]", version="%prog 1.0")
+        self.__parser = optparse.OptionParser(usage="%prog [PARTIAL_PATH] [-v]", version="%prog 1.0")
 
         # optional...
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
@@ -30,7 +30,7 @@ class CmdTopicList(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     @property
-    def path(self):
+    def partial_path(self):
         return self.__args[0] if len(self.__args) > 0 else "/"
 
 
@@ -47,4 +47,4 @@ class CmdTopicList(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def __str__(self, *args, **kwargs):
-        return "CmdTopicList:{path:%s, verbose:%s, args:%s}" % (self.path, self.verbose, self.args)
+        return "CmdTopicList:{partial_path:%s, verbose:%s, args:%s}" % (self.partial_path, self.verbose, self.args)
