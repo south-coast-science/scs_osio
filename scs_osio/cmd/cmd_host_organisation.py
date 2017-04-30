@@ -9,7 +9,7 @@ import optparse
 
 # --------------------------------------------------------------------------------------------------------------------
 
-class CmdOrganisation(object):
+class CmdHostOrganisation(object):
     """
     unix command line handler
     """
@@ -18,36 +18,26 @@ class CmdOrganisation(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog ORG_ID [-n NAME] [-w WEB] [-d DESCRIPTION] [-e EMAIL] [-v]",
+        self.__parser = optparse.OptionParser(usage="%prog [-n NAME] [-w WEB] [-d DESCRIPTION] [-e EMAIL] [-v]",
                                               version="%prog 1.0")
 
         # optional...
         self.__parser.add_option("--name", "-n", type="string", nargs=1, action="store", dest="name",
-                                 help="set name")
+                                 help="update name")
 
         self.__parser.add_option("--web", "-w", type="string", nargs=1, action="store", dest="website",
-                                 help="set web URL")
+                                 help="update website URL")
 
         self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
-                                 help="set description")
+                                 help="update description")
 
         self.__parser.add_option("--email", "-e", type="string", nargs=1, action="store", dest="email",
-                                 help="set email address")
+                                 help="update email address")
 
-        # optional...
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
 
         self.__opts, self.__args = self.__parser.parse_args()
-
-
-    # ----------------------------------------------------------------------------------------------------------------
-
-    def is_valid(self):
-        if self.org_id is None:
-            return False
-
-        return True
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -58,11 +48,6 @@ class CmdOrganisation(object):
 
 
     # ----------------------------------------------------------------------------------------------------------------
-
-    @property
-    def org_id(self):
-        return self.__args[0] if len(self.__args) > 0 else None
-
 
     @property
     def name(self):
@@ -101,7 +86,5 @@ class CmdOrganisation(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdOrganisation:{org_id:%s, name:%s, website:%s, description:%s, email:%s, " \
-               "verbose:%s, args:%s}" % \
-                    (self.org_id, self.name, self.website, self.description, self.email,
-                     self.verbose, self.args)
+        return "CmdHostOrganisation:{name:%s, website:%s, description:%s, email:%s, verbose:%s, args:%s}" % \
+                    (self.name, self.website, self.description, self.email, self.verbose, self.args)

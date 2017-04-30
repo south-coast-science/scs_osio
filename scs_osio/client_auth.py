@@ -6,7 +6,7 @@ Created on 18 Feb 2017
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
 workflow:
-Use osio_publication instead.
+Use host_device instead.
 
 command line example:
 ./client_auth.py -v -s southcoastscience-dev 5406 jtxSrK2e
@@ -21,8 +21,6 @@ from scs_host.sys.host import Host
 
 from scs_osio.cmd.cmd_client_auth import CmdClientAuth
 
-
-# TODO: check whether the USER_ID exists on OSIO?
 
 # --------------------------------------------------------------------------------------------------------------------
 
