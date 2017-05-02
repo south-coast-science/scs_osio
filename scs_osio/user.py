@@ -14,6 +14,7 @@ command line example:
 import sys
 
 from scs_core.data.json import JSONify
+
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.data.user import User
@@ -24,6 +25,8 @@ from scs_host.sys.host import Host
 
 from scs_osio.cmd.cmd_user import CmdUser
 
+
+# TODO: upgrade this, to take user_id explicitly
 
 # --------------------------------------------------------------------------------------------------------------------
 
