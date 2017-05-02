@@ -22,6 +22,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_client_auth import CmdClientAuth
 
 
+# TODO: upgrade this, to take client_id explicitly
+
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':

@@ -27,6 +27,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_host_organisation import CmdHostOrganisation
 
 
+# TODO: upgrade this, to take organisation_id explicitly - rename as organisation
+
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
