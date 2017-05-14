@@ -62,10 +62,6 @@ if __name__ == '__main__':
     # check for existing registration...
     topic = manager.find(cmd.path)
 
-    if topic is None and not cmd.set():
-        print("Topic not found.", file=sys.stderr)
-        exit()
-
 
     # ----------------------------------------------------------------------------------------------------------------
     # run...

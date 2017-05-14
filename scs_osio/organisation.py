@@ -64,10 +64,6 @@ if __name__ == '__main__':
     # check for existing registration...
     org = manager.find(cmd.org_id)
 
-    if org is None and not cmd.set():
-        print("Organisation not found.", file=sys.stderr)
-        exit()
-
 
     # ----------------------------------------------------------------------------------------------------------------
     # run...
