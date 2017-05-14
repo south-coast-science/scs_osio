@@ -37,12 +37,9 @@ class CmdTopic(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
-    def is_valid(self, topic):
+    def is_valid(self):
         if self.path is None:
             return False
-
-        if topic is None:
-            return self.is_complete()
 
         return True
 

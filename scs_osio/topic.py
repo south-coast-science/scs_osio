@@ -37,6 +37,14 @@ if __name__ == '__main__':
 
     cmd = CmdTopic()
 
+    if not cmd.is_valid():
+        cmd.print_help(sys.stderr)
+        exit()
+
+    if cmd.verbose:
+        print(cmd, file=sys.stderr)
+        sys.stderr.flush()
+
 
     # ----------------------------------------------------------------------------------------------------------------
     # resources...
@@ -55,20 +63,8 @@ if __name__ == '__main__':
     topic = manager.find(cmd.path)
 
     if topic is None and not cmd.set():
-        cmd.print_help(sys.stderr)
+        print("Topic not found.", file=sys.stderr)
         exit()
-
-
-    # ----------------------------------------------------------------------------------------------------------------
-    # cmd validation...
-
-    if not cmd.is_valid(topic):
-        cmd.print_help(sys.stderr)
-        exit()
-
-    if cmd.verbose:
-        print(cmd, file=sys.stderr)
-        sys.stderr.flush()
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -87,6 +83,8 @@ if __name__ == '__main__':
 
         else:
             if not cmd.is_complete():
+                print("The topic does not exist, and not all fields required for its creation were provided.",
+                      file=sys.stderr)
                 cmd.print_help(sys.stderr)
                 exit()
 
