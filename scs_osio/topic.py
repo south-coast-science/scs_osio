@@ -17,6 +17,7 @@ command line example:
 import sys
 
 from scs_core.data.json import JSONify
+
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.data.topic import Topic
 from scs_core.osio.data.topic_info import TopicInfo
