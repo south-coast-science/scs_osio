@@ -10,7 +10,7 @@ Requires APIAuth and SystemID documents.
 Note: this script currently does not update device tags.
 
 command line examples:
-./device.py -v -u south-coast-science-test-user -l 50.823130 -0.122922 "BN2 0DA" -d "test 1"
+./device.py -v -u south-coast-science-test-user -l 50.823130 -0.122922 "BN2 0DF" -d "test 1"
 ./device.py -v -u south-coast-science-test-user -l 50.819456 -0.128336 "BN2 1AF" -d "BB dev platform"
 """
 

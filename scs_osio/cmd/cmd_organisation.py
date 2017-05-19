@@ -1,5 +1,5 @@
 """
-Created on 8 Mar 2017
+Created on 14 May 2017
 
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 """
@@ -9,7 +9,7 @@ import optparse
 
 # --------------------------------------------------------------------------------------------------------------------
 
-class CmdHostOrganisation(object):
+class CmdOrganisation(object):
     """
     unix command line handler
     """
@@ -18,21 +18,21 @@ class CmdHostOrganisation(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog [-n NAME] [-w WEB] [-d DESCRIPTION] [-e EMAIL] [-v]",
+        self.__parser = optparse.OptionParser(usage="%prog ORG_ID [-n NAME] [-w WEB] [-d DESCRIPTION] [-e EMAIL] [-v]",
                                               version="%prog 1.0")
 
         # optional...
         self.__parser.add_option("--name", "-n", type="string", nargs=1, action="store", dest="name",
-                                 help="update name")
+                                 help="set name (required if organisation has not yet been registered)")
 
         self.__parser.add_option("--web", "-w", type="string", nargs=1, action="store", dest="website",
-                                 help="update website URL")
+                                 help="set website URL (required if organisation has not yet been registered)")
 
         self.__parser.add_option("--desc", "-d", type="string", nargs=1, action="store", dest="description",
-                                 help="update description")
+                                 help="set description (required if organisation has not yet been registered)")
 
         self.__parser.add_option("--email", "-e", type="string", nargs=1, action="store", dest="email",
-                                 help="update email address")
+                                 help="set email address (required if organisation has not yet been registered)")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
@@ -42,12 +42,35 @@ class CmdHostOrganisation(object):
 
     # ----------------------------------------------------------------------------------------------------------------
 
-    def set(self):
-        return self.name is not None or self.website is not None or self.description is not None or \
-               self.email is not None
+    def is_valid(self):
+        if self.org_id is None:
+            return False
+
+        return True
+
+
+    def is_complete(self):
+        if self.name is None or self.website is None or self.description is None or self.email is None:
+            return False
+
+        return True
 
 
     # ----------------------------------------------------------------------------------------------------------------
+
+    def set(self):
+        if self.name is None and self.website is None and self.description is None and self.email is None:
+            return False
+
+        return True
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+
+    @property
+    def org_id(self):
+        return self.__args[0] if len(self.__args) > 0 else None
+
 
     @property
     def name(self):
@@ -86,5 +109,5 @@ class CmdHostOrganisation(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdHostOrganisation:{name:%s, website:%s, description:%s, email:%s, verbose:%s, args:%s}" % \
-                    (self.name, self.website, self.description, self.email, self.verbose, self.args)
+        return "CmdOrganisation:{org_id:%s, name:%s, website:%s, description:%s, email:%s, verbose:%s, args:%s}" % \
+                    (self.org_id, self.name, self.website, self.description, self.email, self.verbose, self.args)
