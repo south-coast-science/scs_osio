@@ -5,12 +5,6 @@ Created on 18 Feb 2017
 
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
 
-workflow:
-  1: ./system_id.py
-> 2: ./api_auth.py
-  3: ./host_device.py
-  4: ./host_project.py
-
 Creates APIAuth document.
 
 command line example:
