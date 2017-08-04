@@ -12,7 +12,7 @@ monitoring projects.
 
 **Typical PYTHONPATH:**
 
-**Raspberry Pi, in /home/pi/.profile:**
+**Raspberry Pi, in /home/pi/.bashrc:**
 
 export \\
 PYTHONPATH=$HOME/SCS/scs_analysis:$HOME/SCS/scs_dev:$HOME/SCS/scs_osio:$HOME/SCS/scs_mfr:$HOME/SCS/scs_dfe_eng:$HOME/SCS/scs_host_rpi:$HOME/SCS/scs_core:$PYTHONPATH
