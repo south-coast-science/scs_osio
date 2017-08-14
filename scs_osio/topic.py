@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     if not cmd.is_valid():
         cmd.print_help(sys.stderr)
-        exit()
+        exit(2)
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
     if api_auth is None:
         print("APIAuth not available.", file=sys.stderr)
-        exit()
+        exit(1)
 
     # manager...
     manager = TopicManager(HTTPClient(), api_auth.api_key)
@@ -83,7 +83,7 @@ if __name__ == '__main__':
                 print("The topic does not exist, and not all fields required for its creation were provided.",
                       file=sys.stderr)
                 cmd.print_help(sys.stderr)
-                exit()
+                exit(1)
 
             info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)   # for the v2 API, schema_id goes in Topic
 

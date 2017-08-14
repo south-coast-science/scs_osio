@@ -29,7 +29,7 @@ api_auth = APIAuth.load_from_host(Host)
 
 if api_auth is None:
     print("APIAuth not available.", file=sys.stderr)
-    exit()
+    exit(1)
 
 print(api_auth)
 
@@ -38,7 +38,7 @@ client_auth = ClientAuth.load_from_host(Host)
 
 if client_auth is None:
     print("ClientAuth not available.", file=sys.stderr)
-    exit()
+    exit(1)
 
 print(client_auth)
 

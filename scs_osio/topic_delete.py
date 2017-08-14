@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     if not cmd.is_valid():
         cmd.print_help(sys.stderr)
-        exit()
+        exit(2)
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     if auth is None:
         print("APIAuth not available.", file=sys.stderr)
-        exit()
+        exit(1)
 
     # manager...
     manager = TopicManager(HTTPClient(), auth.api_key)

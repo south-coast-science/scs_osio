@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     if auth is None:
         print("APIAuth not available.", file=sys.stderr)
-        exit()
+        exit(1)
 
     if cmd.verbose:
         print(auth, file=sys.stderr)
