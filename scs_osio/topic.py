@@ -61,19 +61,25 @@ if __name__ == '__main__':
     manager = TopicManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
-    topic = manager.find(cmd.path)
+    topics = manager.find_for_org(api_auth.org_id, cmd.path, cmd.schema_id)     # find TopicSummary
+
+    topic = topics[0] if len(topics) > 0 else None
 
 
     # ----------------------------------------------------------------------------------------------------------------
     # run...
 
     if cmd.set():
+
         if topic:
             name = topic.name if cmd.name is None else cmd.name
             description = topic.description if cmd.description is None else cmd.description
 
+            info = TopicInfo(TopicInfo.FORMAT_JSON) if topic.info is None else topic.info
+            schema_id = topic.schema_id if cmd.schema_id is None else cmd.schema_id
+
             # update Topic...
-            updated = Topic(None, name, description, topic.is_public, topic.info, None, None)
+            updated = Topic(None, name, description, topic.is_public, info, True, schema_id)
             manager.update(topic.path, updated)
 
             topic = manager.find(topic.path)
@@ -85,10 +91,10 @@ if __name__ == '__main__':
                 cmd.print_help(sys.stderr)
                 exit(1)
 
-            info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)   # for the v2 API, schema_id goes in Topic
+            info = TopicInfo(TopicInfo.FORMAT_JSON)
 
             # create Topic...
-            topic = Topic(cmd.path, cmd.name, cmd.description, True, True, info, cmd.schema_id)
+            topic = Topic(cmd.path, cmd.name, cmd.description, True, info, True, cmd.schema_id)
             manager.create(topic)
 
     print(JSONify.dumps(topic))
