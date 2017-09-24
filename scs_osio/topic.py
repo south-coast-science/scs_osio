@@ -61,7 +61,7 @@ if __name__ == '__main__':
     manager = TopicManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
-    topics = manager.find_for_org(api_auth.org_id, cmd.path, cmd.schema_id)     # find TopicSummary
+    topics = manager.find_for_org(api_auth.org_id, cmd.path)     # find TopicSummary
 
     topic = topics[0] if len(topics) > 0 else None
 
@@ -70,24 +70,27 @@ if __name__ == '__main__':
     # run...
 
     if cmd.set():
-
         if topic:
+            if cmd.schema_id is not None:
+                print("It is not possible to change the schema ID of an existing topic.", file=sys.stderr)
+                cmd.print_help(sys.stderr)
+                exit(1)
+
             name = topic.name if cmd.name is None else cmd.name
             description = topic.description if cmd.description is None else cmd.description
 
             info = TopicInfo(TopicInfo.FORMAT_JSON) if topic.info is None else topic.info
-            schema_id = topic.schema_id if cmd.schema_id is None else cmd.schema_id
 
             # update Topic...
-            updated = Topic(None, name, description, topic.is_public, info, True, schema_id)
+            updated = Topic(None, name, description, topic.is_public, info, None, None)
+
             manager.update(topic.path, updated)
 
             topic = manager.find(topic.path)
 
         else:
             if not cmd.is_complete():
-                print("The topic does not exist, and not all fields required for its creation were provided.",
-                      file=sys.stderr)
+                print("All fields required for topic creation must be provided.", file=sys.stderr)
                 cmd.print_help(sys.stderr)
                 exit(1)
 
