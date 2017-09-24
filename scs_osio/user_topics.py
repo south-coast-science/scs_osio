@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     if not cmd.is_valid():
         cmd.print_help(sys.stderr)
-        exit()
+        exit(2)
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
         if api_auth is None:
             print("APIAuth not available.", file=sys.stderr)
-            exit()
+            exit(1)
 
         if cmd.verbose:
             print(api_auth, file=sys.stderr)
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     # ----------------------------------------------------------------------------------------------------------------
     # end...
 
-    except KeyboardInterrupt as ex:
+    except KeyboardInterrupt:
         if cmd.verbose:
             print("user_topics: KeyboardInterrupt", file=sys.stderr)
 

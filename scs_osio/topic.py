@@ -19,8 +19,10 @@ import sys
 from scs_core.data.json import JSONify
 
 from scs_core.osio.client.api_auth import APIAuth
+
 from scs_core.osio.data.topic import Topic
 from scs_core.osio.data.topic_info import TopicInfo
+
 from scs_core.osio.manager.topic_manager import TopicManager
 
 from scs_host.client.http_client import HTTPClient
@@ -40,7 +42,7 @@ if __name__ == '__main__':
 
     if not cmd.is_valid():
         cmd.print_help(sys.stderr)
-        exit()
+        exit(2)
 
     if cmd.verbose:
         print(cmd, file=sys.stderr)
@@ -55,13 +57,15 @@ if __name__ == '__main__':
 
     if api_auth is None:
         print("APIAuth not available.", file=sys.stderr)
-        exit()
+        exit(1)
 
     # manager...
     manager = TopicManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
-    topic = manager.find(cmd.path)
+    topics = manager.find_for_org(api_auth.org_id, cmd.path)     # find TopicSummary
+
+    topic = topics[0] if len(topics) > 0 else None
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -69,26 +73,33 @@ if __name__ == '__main__':
 
     if cmd.set():
         if topic:
+            if cmd.schema_id is not None:
+                print("It is not possible to change the schema ID of an existing topic.", file=sys.stderr)
+                cmd.print_help(sys.stderr)
+                exit(1)
+
             name = topic.name if cmd.name is None else cmd.name
             description = topic.description if cmd.description is None else cmd.description
 
+            info = TopicInfo(TopicInfo.FORMAT_JSON) if topic.info is None else topic.info
+
             # update Topic...
-            updated = Topic(None, name, description, topic.is_public, topic.info, None, None)
+            updated = Topic(None, name, description, topic.is_public, info, None, None)
+
             manager.update(topic.path, updated)
 
             topic = manager.find(topic.path)
 
         else:
             if not cmd.is_complete():
-                print("The topic does not exist, and not all fields required for its creation were provided.",
-                      file=sys.stderr)
+                print("All fields required for topic creation must be provided.", file=sys.stderr)
                 cmd.print_help(sys.stderr)
-                exit()
+                exit(1)
 
-            info = TopicInfo(TopicInfo.FORMAT_JSON, None, None, None)   # for the v2 API, schema_id goes in Topic
+            info = TopicInfo(TopicInfo.FORMAT_JSON)
 
             # create Topic...
-            topic = Topic(cmd.path, cmd.name, cmd.description, True, True, info, cmd.schema_id)
+            topic = Topic(cmd.path, cmd.name, cmd.description, True, info, True, cmd.schema_id)
             manager.create(topic)
 
     print(JSONify.dumps(topic))

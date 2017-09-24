@@ -54,7 +54,7 @@ class CmdTopic(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def set(self):
-        return self.__opts.name is not None or self.__opts.description is not None
+        return self.name is not None or self.description is not None or self.schema_id is not None
 
 
     # ----------------------------------------------------------------------------------------------------------------
