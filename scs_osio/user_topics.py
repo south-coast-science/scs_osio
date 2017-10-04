@@ -48,7 +48,7 @@ if __name__ == '__main__':
         # resources...
 
         # APIAuth...
-        api_auth = APIAuth.load_from_host(Host)
+        api_auth = APIAuth.load(Host)
 
         if api_auth is None:
             print("APIAuth not available.", file=sys.stderr)

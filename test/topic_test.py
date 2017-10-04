@@ -22,7 +22,7 @@ from scs_host.sys.host import Host
 # resources...
 
 # APIAuth...
-api_auth = APIAuth.load_from_host(Host)
+api_auth = APIAuth.load(Host)
 
 if api_auth is None:
     print("APIAuth not available.", file=sys.stderr)
@@ -31,7 +31,7 @@ if api_auth is None:
 print(api_auth)
 
 # ClientAuth...
-client_auth = ClientAuth.load_from_host(Host)
+client_auth = ClientAuth.load(Host)
 
 if client_auth is None:
     print("ClientAuth not available.", file=sys.stderr)
