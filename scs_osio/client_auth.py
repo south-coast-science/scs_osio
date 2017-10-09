@@ -47,6 +47,6 @@ if __name__ == '__main__':
 
     else:
         # find self...
-        auth = ClientAuth.load_from_host(Host)
+        auth = ClientAuth.load(Host)
 
     print(JSONify.dumps(auth))
