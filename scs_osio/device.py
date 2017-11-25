@@ -27,6 +27,8 @@ from scs_host.sys.host import Host
 from scs_osio.cmd.cmd_device import CmdDevice
 
 
+# TODO: ability to delete devices
+
 # --------------------------------------------------------------------------------------------------------------------
 
 if __name__ == '__main__':
