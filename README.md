@@ -12,6 +12,12 @@ monitoring projects.
 
 **Example PYTHONPATH:**
 
+macOS, in ~/.bash_profile:
+
+    PYTHONPATH="{$HOME}/SCS/scs_analysis/src:{$HOME}/SCS/scs_osio/src:{$HOME}/SCS/scs_host_posix/src:{$HOME}/SCS/scs_core/src:${PYTHONPATH}" 
+    export PYTHONPATH
+
+
 Raspberry Pi, in /home/pi/.bashrc:
 
     export PYTHONPATH=$HOME/SCS/scs_analysis/src:$HOME/SCS/scs_dev/src:$HOME/SCS/scs_osio/src:$HOME/SCS/scs_mfr/src:$HOME/SCS/scs_dfe_eng/src:$HOME/SCS/scs_host_rpi/src:$HOME/SCS/scs_core/src:$PYTHONPATH
