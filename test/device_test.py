@@ -4,8 +4,6 @@
 Created on 2 Apr 2017
 
 @author: Bruno Beloff (bruno.beloff@southcoastscience.com)
-
-example:
 """
 
 import sys
