@@ -2,7 +2,7 @@
 OpenSensors.io - device, organisation, topic and schema management tools for South Coast Science  air quality
 monitoring projects.
 
-_command line utilities and library classes_
+_Contains command line utilities and library classes_
 
 **Required libraries:** 
 
