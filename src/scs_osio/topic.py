@@ -63,9 +63,7 @@ if __name__ == '__main__':
     manager = TopicManager(HTTPClient(), api_auth.api_key)
 
     # check for existing registration...
-    topics = manager.find_for_org(api_auth.org_id, cmd.path)     # find TopicSummary
-
-    topic = topics[0] if len(topics) > 0 else None
+    topic = manager.find(cmd.path)
 
 
     # ----------------------------------------------------------------------------------------------------------------
