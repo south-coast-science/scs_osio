@@ -11,6 +11,12 @@ _Contains command line utilities only._
 * SCS host: scs_host_bbe, scs_host_bbe_southern, scs_host_posix or scs_host_rpi
 
 
+**Branches:**
+
+The stable branch of this repository is master. For deployment purposes, use:
+
+    git clone --branch=master https://github.com/south-coast-science/scs_osio.git
+
 
 **Example PYTHONPATH:**
 
