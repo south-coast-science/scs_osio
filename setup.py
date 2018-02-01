@@ -18,7 +18,7 @@ except ImportError:
 
 setup(
     name='scs_osio',
-    version='0.1.3',
+    version='0.1.4',
     description='Device, organisation, topic and schema management tools for South Coast Science \
     air quality monitoring projects.',
     author='South Coast Science',
