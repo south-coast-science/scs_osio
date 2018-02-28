@@ -42,17 +42,17 @@ class CmdClientAuth(object):
 
     @property
     def user_id(self):
-        return self.__opts.user_client_password[0] if self.__opts.user_client_password else None
+        return None if self.__opts.user_client_password is None else self.__opts.user_client_password[0]
 
 
     @property
     def client_id(self):
-        return self.__opts.user_client_password[1] if self.__opts.user_client_password else None
+        return None if self.__opts.user_client_password is None else self.__opts.user_client_password[1]
 
 
     @property
     def client_password(self):
-        return self.__opts.user_client_password[2] if self.__opts.user_client_password else None
+        return None if self.__opts.user_client_password is None else self.__opts.user_client_password[2]
 
 
     @property
