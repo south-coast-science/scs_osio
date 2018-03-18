@@ -50,7 +50,7 @@ if __name__ == '__main__':
     api_auth = APIAuth.load(Host)
 
     if api_auth is None:
-        print("APIAuth not available.", file=sys.stderr)
+        print("device_list: APIAuth not available.", file=sys.stderr)
         exit(1)
 
     if cmd.verbose:
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     client_auth = ClientAuth.load(Host)
 
     if client_auth is None:
-        print("ClientAuth not available.", file=sys.stderr)
+        print("device_list: ClientAuth not available.", file=sys.stderr)
         exit(1)
 
     if cmd.verbose:

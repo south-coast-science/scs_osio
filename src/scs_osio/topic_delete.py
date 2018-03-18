@@ -47,7 +47,7 @@ if __name__ == '__main__':
     auth = APIAuth.load(Host)
 
     if auth is None:
-        print("APIAuth not available.", file=sys.stderr)
+        print("topic_delete: APIAuth not available.", file=sys.stderr)
         exit(1)
 
     # manager...
