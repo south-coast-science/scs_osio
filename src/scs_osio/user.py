@@ -52,7 +52,7 @@ if __name__ == '__main__':
     api_auth = APIAuth.load(Host)
 
     if api_auth is None:
-        print("APIAuth not available.", file=sys.stderr)
+        print("user: APIAuth not available.", file=sys.stderr)
         exit(1)
 
     if cmd.verbose:
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     client_auth = ClientAuth.load(Host)
 
     if client_auth is None:
-        print("ClientAuth not available.", file=sys.stderr)
+        print("user: ClientAuth not available.", file=sys.stderr)
         exit(1)
 
     if cmd.verbose:
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     user = manager.find(client_auth.user_id)
 
     if user is None:
-        print("User not found.", file=sys.stderr)
+        print("user: User not found.", file=sys.stderr)
         exit(1)
 
     if cmd.set():
