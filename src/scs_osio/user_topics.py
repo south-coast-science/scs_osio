@@ -18,8 +18,6 @@ from scs_core.data.json import JSONify
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.manager.topic_manager import TopicManager
 
-from scs_core.sys.exception_report import ExceptionReport
-
 from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
@@ -81,6 +79,3 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         if cmd.verbose:
             print("user_topics: KeyboardInterrupt", file=sys.stderr)
-
-    except Exception as ex:
-        print(JSONify.dumps(ExceptionReport.construct(ex)), file=sys.stderr)

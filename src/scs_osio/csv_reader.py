@@ -12,8 +12,6 @@ command line example:
 import sys
 
 from scs_core.csv.csv_reader import CSVReader
-from scs_core.data.json import JSONify
-from scs_core.sys.exception_report import ExceptionReport
 
 from scs_osio.cmd.cmd_csv_reader import CmdCSVReader
 
@@ -59,13 +57,6 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         if cmd.verbose:
             print("csv_reader: KeyboardInterrupt", file=sys.stderr)
-
-    except Exception as ex:
-        print(JSONify.dumps(ExceptionReport.construct(ex)), file=sys.stderr)
-
-
-    # ----------------------------------------------------------------------------------------------------------------
-    # close...
 
     finally:
         if csv is not None:
