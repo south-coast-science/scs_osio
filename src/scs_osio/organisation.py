@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
         else:
             if not cmd.is_complete():
-                print("The organisation does not exist, and not all fields required for its creation were provided.",
+                print("organisation: The organisation does not existYou must therefore set all fields.",
                       file=sys.stderr)
                 cmd.print_help(sys.stderr)
                 exit(1)

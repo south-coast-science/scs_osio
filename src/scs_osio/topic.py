@@ -72,7 +72,7 @@ if __name__ == '__main__':
     if cmd.set():
         if topic:
             if cmd.schema_id is not None:
-                print("It is not possible to change the schema ID of an existing topic.", file=sys.stderr)
+                print("topic: It is not possible to change the schema ID of an existing topic.", file=sys.stderr)
                 cmd.print_help(sys.stderr)
                 exit(1)
 
@@ -90,7 +90,7 @@ if __name__ == '__main__':
 
         else:
             if not cmd.is_complete():
-                print("All fields required for topic creation must be provided.", file=sys.stderr)
+                print("topic: All fields required for topic creation must be provided.", file=sys.stderr)
                 cmd.print_help(sys.stderr)
                 exit(1)
 
