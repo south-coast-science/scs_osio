@@ -36,7 +36,7 @@ if __name__ == '__main__':
         exit(2)
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("topic_delete: %s" % cmd, file=sys.stderr)
         sys.stderr.flush()
 
 
@@ -60,4 +60,4 @@ if __name__ == '__main__':
     success = manager.delete(cmd.path)
 
     if cmd.verbose:
-        print("deleted: %s" % success, file=sys.stderr)
+        print("topic_delete: deleted: %s" % success, file=sys.stderr)

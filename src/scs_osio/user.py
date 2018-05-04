@@ -42,7 +42,7 @@ if __name__ == '__main__':
         exit(2)
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("user: %s" % cmd, file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(api_auth, file=sys.stderr)
+        print("user: %s" % api_auth, file=sys.stderr)
 
     # ClientAuth...
     client_auth = ClientAuth.load(Host)
@@ -66,7 +66,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(client_auth, file=sys.stderr)
+        print("user: %s" % client_auth, file=sys.stderr)
         sys.stderr.flush()
 
     # manager...

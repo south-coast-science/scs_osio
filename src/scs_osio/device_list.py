@@ -40,7 +40,7 @@ if __name__ == '__main__':
         exit(2)
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("device_list: %s" % cmd, file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(api_auth, file=sys.stderr)
+        print("xx: %s" % api_auth, file=sys.stderr)
 
     # ClientAuth...
     client_auth = ClientAuth.load(Host)
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(client_auth, file=sys.stderr)
+        print("device_list: %s" % client_auth, file=sys.stderr)
         sys.stderr.flush()
 
     # manager...
@@ -83,4 +83,4 @@ if __name__ == '__main__':
         print(JSONify.dumps(device))
 
     if cmd.verbose:
-        print("total: %d" % len(devices), file=sys.stderr)
+        print("device_list: total: %d" % len(devices), file=sys.stderr)

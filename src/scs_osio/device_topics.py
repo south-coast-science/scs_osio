@@ -40,7 +40,7 @@ if __name__ == '__main__':
         exit(2)
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("device_topics: %s" % cmd, file=sys.stderr)
 
     try:
         # ----------------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ if __name__ == '__main__':
             exit(1)
 
         if cmd.verbose:
-            print(api_auth, file=sys.stderr)
+            print("device_topics: %s" % api_auth, file=sys.stderr)
             sys.stderr.flush()
 
         # managers...
@@ -82,8 +82,8 @@ if __name__ == '__main__':
             start = cmd.start
 
         if cmd.verbose:
-            print("start: %s" % start, file=sys.stderr)
-            print("end: %s" % end, file=sys.stderr)
+            print("device_topics: start: %s" % start, file=sys.stderr)
+            print("device_topics: end: %s" % end, file=sys.stderr)
             sys.stderr.flush()
 
         # topics...
@@ -93,7 +93,7 @@ if __name__ == '__main__':
             print(JSONify.dumps(topic))
 
         if cmd.verbose:
-            print("total: %d" % len(topics), file=sys.stderr)
+            print("device_topics: total: %d" % len(topics), file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------

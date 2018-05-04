@@ -33,7 +33,7 @@ if __name__ == '__main__':
     cmd = CmdTopicList()
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("topic_list: %s" % cmd, file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(api_auth, file=sys.stderr)
+        print("topic_list: %s" % api_auth, file=sys.stderr)
         sys.stderr.flush()
 
     # manager...
@@ -63,4 +63,4 @@ if __name__ == '__main__':
         print(JSONify.dumps(topic))
 
     if cmd.verbose:
-        print("total: %d" % len(topics), file=sys.stderr)
+        print("topic_list: total: %d" % len(topics), file=sys.stderr)

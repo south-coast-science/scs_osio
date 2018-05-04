@@ -37,7 +37,7 @@ if __name__ == '__main__':
         exit(2)
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("public_user: %s" % cmd, file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(api_auth, file=sys.stderr)
+        print("public_user: %s" % api_auth, file=sys.stderr)
         sys.stderr.flush()
 
     # manager...

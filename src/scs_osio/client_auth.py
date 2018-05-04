@@ -34,7 +34,7 @@ if __name__ == '__main__':
     cmd = CmdClientAuth()
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("client_auth: %s" % cmd, file=sys.stderr)
         sys.stderr.flush()
 
 
