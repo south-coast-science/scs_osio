@@ -31,7 +31,7 @@ if __name__ == '__main__':
     cmd = CmdAPIAuth()
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("api_auth: %s" % cmd, file=sys.stderr)
         sys.stderr.flush()
 
 

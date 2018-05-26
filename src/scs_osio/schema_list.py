@@ -33,7 +33,7 @@ if __name__ == '__main__':
     cmd = CmdSchemaList()
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("schema_list: %s" % cmd, file=sys.stderr)
 
 
     # ----------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(auth, file=sys.stderr)
+        print("schema_list: %s" % auth, file=sys.stderr)
         sys.stderr.flush()
 
     # manager...
@@ -63,4 +63,4 @@ if __name__ == '__main__':
         print(JSONify.dumps(schema))
 
     if cmd.verbose:
-        print("total: %d" % len(schemas), file=sys.stderr)
+        print("schema_list: total: %d" % len(schemas), file=sys.stderr)

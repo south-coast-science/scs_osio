@@ -40,7 +40,7 @@ if __name__ == '__main__':
         exit(2)
 
     if cmd.verbose:
-        print(cmd, file=sys.stderr)
+        print("organisation: %s" % cmd, file=sys.stderr)
         sys.stderr.flush()
 
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print(api_auth, file=sys.stderr)
+        print("organisation: %s" % api_auth, file=sys.stderr)
         sys.stderr.flush()
 
     # manager...
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
         else:
             if not cmd.is_complete():
-                print("organisation: The organisation does not existYou must therefore set all fields.",
+                print("organisation: The organisation does not exist. You must therefore set all fields:",
                       file=sys.stderr)
                 cmd.print_help(sys.stderr)
                 exit(1)
