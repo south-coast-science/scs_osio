@@ -54,7 +54,7 @@ if __name__ == '__main__':
         exit(1)
 
     if cmd.verbose:
-        print("xx: %s" % api_auth, file=sys.stderr)
+        print("device_list: %s" % api_auth, file=sys.stderr)
 
     # ClientAuth...
     client_auth = ClientAuth.load(Host)
