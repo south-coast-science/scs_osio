@@ -59,7 +59,7 @@ if __name__ == '__main__':
         # ------------------------------------------------------------------------------------------------------------
         # resources...
 
-            writer = CSVWriter(cmd.filename, cmd.append)
+        writer = CSVWriter(cmd.filename, cmd.append)
 
         if cmd.verbose:
             print("csv_writer: %s" % writer, file=sys.stderr)
