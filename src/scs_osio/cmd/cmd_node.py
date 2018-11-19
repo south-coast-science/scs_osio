@@ -16,11 +16,17 @@ class CmdNode(object):
         """
         Constructor
         """
-        self.__parser = optparse.OptionParser(usage="%prog PATH [-i] [-v]", version="%prog 1.0")
+        self.__parser = optparse.OptionParser(usage="%prog [-i] [{ -a | -s }] [-v] [PATH]", version="%prog 1.0")
 
         # optional...
         self.__parser.add_option("--ignore", "-i", action="store_true", dest="ignore", default=False,
                                  help="ignore data where node is missing")
+
+        self.__parser.add_option("--array", "-a", action="store_true", dest="array", default=False,
+                                 help="output the sequence of input JSON documents as array")
+
+        self.__parser.add_option("--sequence", "-s", action="store_true", dest="sequence", default=False,
+                                 help="output the contents of the input array node as a sequence")
 
         self.__parser.add_option("--verbose", "-v", action="store_true", dest="verbose", default=False,
                                  help="report narrative to stderr")
@@ -31,7 +37,7 @@ class CmdNode(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     def is_valid(self):
-        if self.path is None:
+        if self.array and self.sequence:
             return False
 
         return True
@@ -40,18 +46,28 @@ class CmdNode(object):
     # ----------------------------------------------------------------------------------------------------------------
 
     @property
-    def path(self):
-        return self.__args[0] if len(self.__args) > 0 else None
-
-
-    @property
     def ignore(self):
         return self.__opts.ignore
 
 
     @property
+    def array(self):
+        return self.__opts.array
+
+
+    @property
+    def sequence(self):
+        return self.__opts.sequence
+
+
+    @property
     def verbose(self):
         return self.__opts.verbose
+
+
+    @property
+    def path(self):
+        return self.__args[0] if len(self.__args) > 0 else None
 
 
     @property
@@ -66,4 +82,5 @@ class CmdNode(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdNode:{ignore:%s, verbose:%s, args:%s}" %  (self.ignore, self.verbose, self.args)
+        return "CmdNode:{ignore:%s, array:%s, sequence:%s, verbose:%s, path:%s, args:%s}" %  \
+               (self.ignore, self.array, self.sequence, self.verbose, self.path, self.args)
