@@ -32,12 +32,7 @@ class CmdSchemaList(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def __str__(self, *args, **kwargs):
-        return "CmdSchemaList:{verbose:%s, args:%s}" % (self.verbose, self.args)
+        return "CmdSchemaList:{verbose:%s}" % self.verbose

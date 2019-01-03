@@ -61,13 +61,8 @@ class CmdCSVWriter(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def __str__(self, *args, **kwargs):
-        return "CmdCSVWriter:{filename:%s, cache:%s, append:%s, echo:%s, verbose:%s, args:%s}" % \
-                    (self.filename, self.cache, self.append, self.echo, self.verbose, self.args)
+        return "CmdCSVWriter:{filename:%s, cache:%s, append:%s, echo:%s, verbose:%s}" % \
+                    (self.filename, self.cache, self.append, self.echo, self.verbose)

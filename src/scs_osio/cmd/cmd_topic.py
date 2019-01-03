@@ -84,11 +84,6 @@ class CmdTopic(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def print_help(self, file):
@@ -96,5 +91,5 @@ class CmdTopic(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdTopic:{path:%s, name:%s, description:%s, schema_id:%s, verbose:%s, args:%s}" % \
-                    (self.path, self.name, self.description, self.schema_id, self.verbose, self.args)
+        return "CmdTopic:{path:%s, name:%s, description:%s, schema_id:%s, verbose:%s}" % \
+                    (self.path, self.name, self.description, self.schema_id, self.verbose)

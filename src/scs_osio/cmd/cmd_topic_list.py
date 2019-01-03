@@ -45,13 +45,8 @@ class CmdTopicList(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def __str__(self, *args, **kwargs):
-        return "CmdTopicList:{partial_path:%s, schema_id:%s, verbose:%s, args:%s}" % \
-               (self.partial_path, self.schema_id, self.verbose, self.args)
+        return "CmdTopicList:{partial_path:%s, schema_id:%s, verbose:%s}" % \
+               (self.partial_path, self.schema_id, self.verbose)

@@ -58,11 +58,6 @@ class CmdDeviceList(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def print_help(self, file):
@@ -70,5 +65,4 @@ class CmdDeviceList(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdDeviceList:{user:%s, org:%s, verbose:%s, args:%s}" % \
-               (self.user, self.org, self.verbose, self.args)
+        return "CmdDeviceList:{user:%s, org:%s, verbose:%s}" % (self.user, self.org, self.verbose)

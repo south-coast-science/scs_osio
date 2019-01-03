@@ -87,11 +87,6 @@ class CmdDeviceTopics(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def print_help(self, file):
@@ -99,5 +94,5 @@ class CmdDeviceTopics(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdDeviceTopics:{client_id:%s, minutes:%s, start:%s, end:%s, verbose:%s, args:%s}" % \
-                    (self.client_id, self.minutes, self.start, self.end, self.verbose, self.args)
+        return "CmdDeviceTopics:{client_id:%s, minutes:%s, start:%s, end:%s, verbose:%s}" % \
+                    (self.client_id, self.minutes, self.start, self.end, self.verbose)

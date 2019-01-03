@@ -46,11 +46,6 @@ class CmdTopicDelete(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def print_help(self, file):
@@ -58,5 +53,4 @@ class CmdTopicDelete(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdTopicDelete:{path:%s, verbose:%s, args:%s}" % \
-                    (self.path, self.verbose, self.args)
+        return "CmdTopicDelete:{path:%s, verbose:%s}" % (self.path, self.verbose)
