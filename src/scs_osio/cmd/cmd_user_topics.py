@@ -48,11 +48,6 @@ class CmdUserTopics(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def print_help(self, file):
@@ -60,4 +55,4 @@ class CmdUserTopics(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdUserTopics:{user_id:%s, verbose:%s, args:%s}" %  (self.user_id, self.verbose, self.args)
+        return "CmdUserTopics:{user_id:%s, verbose:%s}" %  (self.user_id, self.verbose)

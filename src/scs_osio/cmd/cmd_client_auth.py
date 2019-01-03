@@ -60,13 +60,8 @@ class CmdClientAuth(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def __str__(self, *args, **kwargs):
-        return "CmdClientAuth:{user_id:%s, client_id:%s, client_password:%s, verbose:%s, args:%s}" % \
-               (self.user_id, self.client_id, self.client_password, self.verbose, self.args)
+        return "CmdClientAuth:{user_id:%s, client_id:%s, client_password:%s, verbose:%s}" % \
+               (self.user_id, self.client_id, self.client_password, self.verbose)

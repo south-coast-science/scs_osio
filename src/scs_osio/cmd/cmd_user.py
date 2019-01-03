@@ -75,11 +75,6 @@ class CmdUser(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def print_help(self, file):
@@ -87,5 +82,5 @@ class CmdUser(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdUser:{password:%s, name:%s, email:%s, verbose:%s, args:%s}" % \
-                    (self.password, self.name, self.email, self.verbose, self.args)
+        return "CmdUser:{password:%s, name:%s, email:%s, verbose:%s}" % \
+                    (self.password, self.name, self.email, self.verbose)

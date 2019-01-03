@@ -97,11 +97,6 @@ class CmdOrganisation(object):
         return self.__opts.verbose
 
 
-    @property
-    def args(self):
-        return self.__args
-
-
     # ----------------------------------------------------------------------------------------------------------------
 
     def print_help(self, file):
@@ -109,5 +104,5 @@ class CmdOrganisation(object):
 
 
     def __str__(self, *args, **kwargs):
-        return "CmdOrganisation:{org_id:%s, name:%s, website:%s, description:%s, email:%s, verbose:%s, args:%s}" % \
-                    (self.org_id, self.name, self.website, self.description, self.email, self.verbose, self.args)
+        return "CmdOrganisation:{org_id:%s, name:%s, website:%s, description:%s, email:%s, verbose:%s}" % \
+                    (self.org_id, self.name, self.website, self.description, self.email, self.verbose)
