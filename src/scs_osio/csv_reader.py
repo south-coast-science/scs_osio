@@ -84,7 +84,7 @@ if __name__ == '__main__':
 
         first = True
 
-        for datum in reader.rows:
+        for datum in reader.rows():
             if cmd.array:
                 if first:
                     print(datum, end='')
