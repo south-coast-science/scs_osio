@@ -38,7 +38,7 @@ if client_auth is None:
 print(client_auth)
 
 # manager...
-manager = TopicManager(HTTPClient(), api_auth.api_key)
+manager = TopicManager(HTTPClient(False), api_auth.api_key)
 
 print(manager)
 print("-")

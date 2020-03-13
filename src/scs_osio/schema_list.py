@@ -51,7 +51,7 @@ if __name__ == '__main__':
         sys.stderr.flush()
 
     # manager...
-    manager = SchemaManager(HTTPClient(), auth.api_key)
+    manager = SchemaManager(HTTPClient(False), auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------

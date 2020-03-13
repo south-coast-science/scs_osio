@@ -60,7 +60,7 @@ if __name__ == '__main__':
         exit(1)
 
     # manager...
-    manager = TopicManager(HTTPClient(), api_auth.api_key)
+    manager = TopicManager(HTTPClient(False), api_auth.api_key)
 
     # check for existing registration...
     topic = manager.find(cmd.path)
