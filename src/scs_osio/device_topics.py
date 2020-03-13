@@ -58,7 +58,7 @@ if __name__ == '__main__':
             sys.stderr.flush()
 
         # managers...
-        device_manager = DeviceManager(HTTPClient(), api_auth.api_key)
+        device_manager = DeviceManager(HTTPClient(False), api_auth.api_key)
 
         # check for existing registration...
         device = device_manager.find(api_auth.org_id, cmd.client_id)
@@ -67,7 +67,7 @@ if __name__ == '__main__':
             print("device_topics: Device not found.", file=sys.stderr)
             exit(1)
 
-        topic_manager = TopicManager(HTTPClient(), api_auth.api_key)
+        topic_manager = TopicManager(HTTPClient(False), api_auth.api_key)
 
 
         # ------------------------------------------------------------------------------------------------------------

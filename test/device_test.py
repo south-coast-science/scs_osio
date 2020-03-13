@@ -38,7 +38,7 @@ if client_auth is None:
 print(client_auth)
 
 # manager...
-http_client = HTTPClient()
+http_client = HTTPClient(False)
 
 manager = DeviceManager(http_client, api_auth.api_key)
 
