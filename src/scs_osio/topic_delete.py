@@ -51,7 +51,7 @@ if __name__ == '__main__':
         exit(1)
 
     # manager...
-    manager = TopicManager(HTTPClient(), auth.api_key)
+    manager = TopicManager(HTTPClient(False), auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------

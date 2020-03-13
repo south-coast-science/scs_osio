@@ -59,7 +59,7 @@ if __name__ == '__main__':
         sys.stderr.flush()
 
     # manager...
-    manager = OrganisationManager(HTTPClient(), api_auth.api_key)
+    manager = OrganisationManager(HTTPClient(False), api_auth.api_key)
 
     # check for existing registration...
     org = manager.find(cmd.org_id)

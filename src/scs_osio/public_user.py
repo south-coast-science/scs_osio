@@ -55,7 +55,7 @@ if __name__ == '__main__':
         sys.stderr.flush()
 
     # manager...
-    manager = UserManager(HTTPClient(), api_auth.api_key)
+    manager = UserManager(HTTPClient(False), api_auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------

@@ -68,7 +68,7 @@ if __name__ == '__main__':
         sys.stderr.flush()
 
     # manager...
-    manager = DeviceManager(HTTPClient(), api_auth.api_key)
+    manager = DeviceManager(HTTPClient(False), api_auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------
