@@ -8,11 +8,12 @@ Created on 2 Apr 2017
 
 import sys
 
+from scs_core.client.http_client import HTTPClient
+
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.manager.topic_manager import TopicManager
 
-from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
 
