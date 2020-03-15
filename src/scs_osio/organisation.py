@@ -14,13 +14,14 @@ command line examples:
 
 import sys
 
+from scs_core.client.http_client import HTTPClient
+
 from scs_core.data.json import JSONify
 
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.data.organisation import Organisation
 from scs_core.osio.manager.organisation_manager import OrganisationManager
 
-from scs_host.client.http_client import HTTPClient
 from scs_host.sys.host import Host
 
 from scs_osio.cmd.cmd_organisation import CmdOrganisation
