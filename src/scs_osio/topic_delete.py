@@ -13,8 +13,6 @@ command line example:
 
 import sys
 
-from scs_core.client.http_client import HTTPClient
-
 from scs_core.osio.manager.topic_manager import TopicManager
 from scs_core.osio.client.api_auth import APIAuth
 
@@ -52,7 +50,7 @@ if __name__ == '__main__':
         exit(1)
 
     # manager...
-    manager = TopicManager(HTTPClient(False), auth.api_key)
+    manager = TopicManager(auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------

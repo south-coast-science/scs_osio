@@ -13,8 +13,6 @@ command line example:
 
 import sys
 
-from scs_core.client.http_client import HTTPClient
-
 from scs_core.data.json import JSONify
 
 from scs_core.osio.client.api_auth import APIAuth
@@ -71,7 +69,7 @@ if __name__ == '__main__':
         sys.stderr.flush()
 
     # manager...
-    manager = UserManager(HTTPClient(False), api_auth.api_key)
+    manager = UserManager(api_auth.api_key)
 
 
     # ----------------------------------------------------------------------------------------------------------------

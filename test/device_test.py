@@ -8,8 +8,6 @@ Created on 2 Apr 2017
 
 import sys
 
-from scs_core.client.http_client import HTTPClient
-
 from scs_core.osio.client.api_auth import APIAuth
 from scs_core.osio.client.client_auth import ClientAuth
 from scs_core.osio.manager.device_manager import DeviceManager
@@ -39,9 +37,7 @@ if client_auth is None:
 print(client_auth)
 
 # manager...
-http_client = HTTPClient(False)
-
-manager = DeviceManager(http_client, api_auth.api_key)
+manager = DeviceManager(api_auth.api_key)
 
 print(manager)
 print("-")
