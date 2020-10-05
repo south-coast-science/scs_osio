@@ -83,7 +83,7 @@ if __name__ == '__main__':
                 print("organisation: The organisation does not exist. You must therefore set all fields:",
                       file=sys.stderr)
                 cmd.print_help(sys.stderr)
-                exit(1)
+                exit(2)
 
             # create Organisation...
             org = Organisation(None, cmd.name, cmd.website, cmd.description, cmd.email)
