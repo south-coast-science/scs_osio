@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
         else:
             if not cmd.is_complete():
-                print("organisation: The organisation does not exist. You must therefore set all fields:",
+                print("organisation: The organisation does not exist - you must therefore set all fields.",
                       file=sys.stderr)
                 cmd.print_help(sys.stderr)
                 exit(2)
