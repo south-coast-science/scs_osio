@@ -103,11 +103,9 @@ if __name__ == '__main__':
     # end...
 
     except KeyboardInterrupt:
-        if cmd and cmd.verbose:
-            print("csv_reader: KeyboardInterrupt", file=sys.stderr)
+        print(file=sys.stderr)
 
     finally:
-
         if reader is not None:
             if cmd is not None and cmd.array:
                 print(']')

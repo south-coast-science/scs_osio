@@ -76,5 +76,4 @@ if __name__ == '__main__':
     # end...
 
     except KeyboardInterrupt:
-        if cmd.verbose:
-            print("user_topics: KeyboardInterrupt", file=sys.stderr)
+        print(file=sys.stderr)

@@ -87,7 +87,7 @@ if __name__ == '__main__':
                 node = datum.node(cmd.path)
 
             except KeyError as ex:
-                print("node: KeyError: %s" % ex, file=sys.stderr)
+                print("node: %s" % repr(ex), file=sys.stderr)
                 exit(1)
 
             document = JSONify.dumps(node)
@@ -118,8 +118,7 @@ if __name__ == '__main__':
     # end...
 
     except KeyboardInterrupt:
-        if cmd.verbose:
-            print("node: KeyboardInterrupt", file=sys.stderr)
+        print(file=sys.stderr)
 
     finally:
         if cmd.array:
